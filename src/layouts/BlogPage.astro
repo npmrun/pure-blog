@@ -1,0 +1,28 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { single, published, getPost } from '@blog/utils';
+import type { Post } from '#/post';
+
+export interface Props {
+	content: any
+}
+let { title, description, pubDate, updatedDate, heroImage, _images } = getPost(Astro.props as Props)
+---
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body>
+		<Header title={title}/>
+		<main>
+			<article class="typo article">
+				<slot />
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

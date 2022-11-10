@@ -1,0 +1,36 @@
+/*
+  The CSS in this style tag is based off of Bear Blog's default CSS.
+  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
+  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+ */
+
+html {
+  background: #eee;
+}
+body {
+  width: 95%;
+  max-width: 960px;
+  background: #fff;
+  margin: 3em auto 0;
+  padding-top: 2em;
+  border: 1px solid #ddd;
+  border-width: 0 1px;
+  padding: 5% 6% 5%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar-track {
+  border: none;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.3);
+  transition: background linear 1s;
+}
+::-webkit-scrollbar-corner {
+  background: none;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
