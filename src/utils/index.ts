@@ -3,6 +3,41 @@ import { isDev } from '@blog/config';
 import type { MarkdownInstance } from 'astro';
 import { articleDir, articleRoute } from '@blog/share';
 
+function co(data: any, cb: any){
+    const array = Object.keys(data)
+    const result = []
+    for(let i = 0; i<array.length; i++){
+        let key = array[i].slice(1)
+        const tempArr = key.split("/")
+        let num = 0
+        let curFiles = result;
+        while(num<tempArr.length){
+            const temp = tempArr[num]
+            let cur = curFiles.filter(v=>v.name===temp)
+            if(!cur.length){
+                // 文件夹
+                let v = {
+                    name: temp,
+                    data: undefined,
+                    children: []
+                }
+                if(num===tempArr.length-1){
+                    // 文件
+                    delete v.children
+                    v.data = cb(data['/'+key])
+                }
+                curFiles.push(v)
+                curFiles = v.children
+            }else{
+                let o = cur[0]
+                curFiles = o.children
+            }
+            num++
+        }
+    }
+    return result
+}
+
 /**
  * 获取所有的文章
  */
@@ -11,6 +46,18 @@ export async function getPosts() {
     eager: true,
   });
   return Object.values(obj) as MarkdownInstance<any>[];
+}
+
+/**
+ * 获取文件树
+ */
+export async function publishedTree() {
+  const obj = await import.meta.glob('@root/article/**/*.{md,mdx}', {
+    eager: true,
+  });
+  return co(obj, function (post){
+    return single(post)
+  })
 }
 
 /**

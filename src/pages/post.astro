@@ -2,18 +2,13 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Page from "../layouts/Page.astro"
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
-import {published} from "@blog/utils"
+import {published, publishedTree} from "@blog/utils"
 
 const posts = await published()
-
 ---
-
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
+	<style>
 			ul {
 				list-style-type: none;
 				padding: unset;
@@ -30,16 +25,13 @@ const posts = await published()
 				color: #8e32dc;
 			}
 		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
+<Page content={{title: SITE_TITLE + '-文章', description: SITE_DESCRIPTION}}>
+	<section>
 				<ul>
 					{posts.map((post) => (
 						<li>
 							<time datetime={post.pubTimestamp}>
-								{new Date(post.pubTimestamp).toLocaleDateString('en-us', {
+								{new Date(post.pubTimestamp).toLocaleDateString('zh-cn', {
 									year: 'numeric',
 									month: 'short',
 									day: 'numeric',
@@ -50,7 +42,4 @@ const posts = await published()
 					))}
 				</ul>
 			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+</Page>
