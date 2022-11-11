@@ -28,7 +28,7 @@ function co(data: any, cb: any){
                 // 文件夹
                 let v = {
                     name: temp,
-                    active: "ss",
+                    active: "/post/"+tempArr.slice(1).slice(0, num).join('/').replace(/\.(md|mdx)$/g, ''),
                     data: undefined,
                     children: []
                 }

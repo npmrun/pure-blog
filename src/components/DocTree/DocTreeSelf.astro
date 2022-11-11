@@ -19,7 +19,7 @@ function isActive(url: string){
 ---
 
 {list.map(v=>{
-    console.log(v)
+    console.log(v.active)
     v.data && isActive(v.data.url)
     return <details>
       <summary>
