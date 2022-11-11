@@ -1,7 +1,7 @@
 ---
 import { single, published, getPost } from '@blog/utils';
 import type { Post, PostProps } from '#/post';
-import { showArticleHeroImage } from "@blog/config"
+import { showArticleHeroImage, githubURL } from "@blog/config"
 import Base from "./_ui/Base.astro"
 
 export interface extendProps {
@@ -9,8 +9,8 @@ export interface extendProps {
 }
 export type Props = Partial<PostProps> & extendProps
 
-let { title, description, pubDate, updatedDate, heroImage, _images } = getPost(Astro.props as Props) as Props
-
+let { title, description, pubDate, updatedDate, heroImage, _images, filePath} = getPost(Astro.props as Props) as Props
+console.log(getPost(Astro.props as Props))
 if(showArticleHeroImage && _images && _images.length){
 	heroImage = _images[0].url
 }
@@ -25,6 +25,7 @@ if(showArticleHeroImage && _images && _images.length){
 						Last updated on <time>{updatedDate}</time>
 					</div>
 				)}
+				{filePath && <a href={githubURL+"/article"+filePath} target="_blank" style="margin: 6px 0;display: inline-block;">在Github编辑</a>}
 				<hr />
 				<slot />
 			</article>

@@ -10,3 +10,6 @@ export const SITE_DESCRIPTION = '花径不曾缘客扫，蓬门今始为君开!'
 
 // If any images in article, then show the first on the top.
 export const showArticleHeroImage = false
+
+// 注意最后的feat-filetree为当前所在分支
+export const githubURL = 'https://github.com/npmrun/pure-blog/edit/feat-filetree'

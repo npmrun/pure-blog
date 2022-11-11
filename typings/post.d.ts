@@ -26,4 +26,5 @@ export type PostProps = {
 
 export type Post = {
   file: URL
+  filePath: string
 } & PostProps;

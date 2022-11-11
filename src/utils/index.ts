@@ -29,6 +29,7 @@ function co(data: any, cb: any){
                 let v = {
                     name: temp,
                     active: "/post/"+tempArr.slice(1).slice(0, num).join('/').replace(/\.(md|mdx)$/g, ''),
+                    path: array[i],
                     data: undefined,
                     children: []
                 }
@@ -88,11 +89,13 @@ export function single(post: MarkdownInstance<any>): Post {
       .replace(/\.(md|mdx)$/g, '');
     url = '/post/' + slug;
   }
+  let filePath = post.file.replace(articleDir, '')
   const isDraft = slug.split('/')[0].startsWith('drafts');
   const isPages = !!isRoute;
   return {
     ...post.frontmatter,
     Content: post.Content,
+    filePath: filePath,
     slug: slug,
     url, // 如果在src/pages目录外，此时url为undefined,那么就使用上面的slug手动拼接路由
     isDraft,

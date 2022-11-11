@@ -2,9 +2,11 @@
 .serif {
   font-family: Palatino, Optima, Georgia, serif;
 }
-.type .hero-image{
+.typo .hero-image{
   display: block;
-  height: 360px;
+  height: 460px;
+  width: 100%;
+  object-fit: cover;
 }
 .typo code {
   color: #1abc9c;
