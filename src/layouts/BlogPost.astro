@@ -10,7 +10,7 @@ export interface extendProps {
 export type Props = Partial<PostProps> & extendProps
 
 let { title, description, pubDate, updatedDate, heroImage, _images, filePath} = getPost(Astro.props as Props) as Props
-console.log(getPost(Astro.props as Props))
+
 if(showArticleHeroImage && _images && _images.length){
 	heroImage = _images[0].url
 }
