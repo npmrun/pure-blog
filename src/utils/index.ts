@@ -7,6 +7,13 @@ function co(data: any, cb: any){
     const array = Object.keys(data)
     const result = []
     for(let i = 0; i<array.length; i++){
+        let value = cb(data[array[i]])
+        if(!value.title){
+          continue
+        }
+        if(!isDev && value.isDraft){
+          continue
+        }
         let key = array[i].slice(1)
         const tempArr = key.split("/")
         let num = 0
@@ -24,7 +31,7 @@ function co(data: any, cb: any){
                 if(num===tempArr.length-1){
                     // 文件
                     delete v.children
-                    v.data = cb(data['/'+key])
+                    v.data = value
                 }
                 curFiles.push(v)
                 curFiles = v.children

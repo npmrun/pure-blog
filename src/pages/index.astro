@@ -2,13 +2,13 @@
 import BlogPage from "../layouts/BlogPage.astro"
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 import { publishedTree } from "@blog/utils"
-import FileTree from "@blog/components/FileTree.astro"
+import DocTree from "@blog/components/DocTree/DocTree.astro"
 
 const articles = await publishedTree()
 
 ---
 <BlogPage title={SITE_TITLE} description={SITE_DESCRIPTION}>
-<FileTree list={articles}></FileTree>
+<DocTree list={articles}></DocTree>
 <h1>客人远道而来，不胜荣幸。</h1>
 <p>门有车马客，问君何乡士。捷步往相讯，果得旧邻里。凄凄声中情，慊慊增下俚。  </p>
 
