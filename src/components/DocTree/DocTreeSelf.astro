@@ -13,15 +13,12 @@ export interface Props {
 const { list } = Astro.props as Props
 
 function isActive(url: string){
-  // console.log(decodeURIComponent(Astro.url.pathname.replace(/\/$/, '')), url)
-  // return Astro.url.pathname.replace(/\/$/, '').startsWith(url);
+  return decodeURIComponent(Astro.url.pathname.replace(/\/$/, '')).startsWith(url);
 }
 ---
 
 {list.map(v=>{
-    console.log(v.active)
-    v.data && isActive(v.data.url)
-    return <details>
+    return <details open={isActive(v.active)}>
       <summary>
         {!v.data && <span class="tree-item">{v.name}</span>}
         {!!v.data && <a href={v.data.url} class="tree-item tree-md-file">{v.name}</a>}
