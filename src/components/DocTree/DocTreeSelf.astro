@@ -17,7 +17,7 @@ const { list } = Astro.props as Props
     return <details open="true">
       <summary>
         {!v.data && <span class="tree-item">{v.name}</span>}
-        {!!v.data && <a href={v.data.url} class="tree-item">{v.name}</a>}
+        {!!v.data && <a href={v.data.url} class="tree-item tree-md-file">{v.name}</a>}
       </summary>
       {Array.isArray(v.children) && <Astro.self list={v.children} />}
     </details>
