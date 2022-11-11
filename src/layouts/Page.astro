@@ -1,9 +1,6 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import { single, published, getPost } from '@blog/utils';
-
+import Base from "./_ui/Base.astro"
 export interface extendProps {
 	title: string
 	description: string
@@ -12,17 +9,4 @@ export type Props = Partial<PostProps> & extendProps
 
 let { title, description } = getPost(Astro.props as Props) as Props
 ---
-<!DOCTYPE html>
-<html lang="zh">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
-
-	<body>
-		<Header title={title}/>
-		<main>
-			<slot />
-		</main>
-		<Footer />
-	</body>
-</html>
+<Base title={title} description={description}><slot /></Base>

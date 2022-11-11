@@ -7,9 +7,19 @@ function co(data: any, cb: any){
     const array = Object.keys(data)
     const result = []
     for(let i = 0; i<array.length; i++){
+        let value = cb(data[array[i]])
+        if(!value.title){
+          continue
+        }
+        if(!isDev && value.isDraft){
+          continue
+        }
         let key = array[i].slice(1)
         const tempArr = key.split("/")
-        let num = 0
+        // if(value.isDraft){
+        //   tempArr[1] = "草稿"
+        // }
+        let num = 1 // 从内部文件夹开始
         let curFiles = result;
         while(num<tempArr.length){
             const temp = tempArr[num]
@@ -18,13 +28,15 @@ function co(data: any, cb: any){
                 // 文件夹
                 let v = {
                     name: temp,
+                    active: "/post/"+tempArr.slice(1).slice(0, num).join('/').replace(/\.(md|mdx)$/g, ''),
+                    path: array[i],
                     data: undefined,
                     children: []
                 }
                 if(num===tempArr.length-1){
                     // 文件
                     delete v.children
-                    v.data = cb(data['/'+key])
+                    v.data = value
                 }
                 curFiles.push(v)
                 curFiles = v.children
@@ -77,11 +89,13 @@ export function single(post: MarkdownInstance<any>): Post {
       .replace(/\.(md|mdx)$/g, '');
     url = '/post/' + slug;
   }
+  let filePath = post.file.replace(articleDir, '')
   const isDraft = slug.split('/')[0].startsWith('drafts');
   const isPages = !!isRoute;
   return {
     ...post.frontmatter,
     Content: post.Content,
+    filePath: filePath,
     slug: slug,
     url, // 如果在src/pages目录外，此时url为undefined,那么就使用上面的slug手动拼接路由
     isDraft,

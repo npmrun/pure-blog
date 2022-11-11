@@ -1,33 +1,23 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import { single, published, getPost } from '@blog/utils';
 import type { Post, PostProps } from '#/post';
-import { showArticleHeroImage } from "@blog/config"
+import { showArticleHeroImage, githubURL } from "@blog/config"
+import Base from "./_ui/Base.astro"
 
 export interface extendProps {
 
 }
 export type Props = Partial<PostProps> & extendProps
 
-let { title, description, pubDate, updatedDate, heroImage, _images } = getPost(Astro.props as Props) as Props
-
+let { title, description, pubDate, updatedDate, heroImage, _images, filePath} = getPost(Astro.props as Props) as Props
+console.log(getPost(Astro.props as Props))
 if(showArticleHeroImage && _images && _images.length){
 	heroImage = _images[0].url
 }
 ---
-<!DOCTYPE html>
-<html lang="zh">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
-
-	<body>
-		<Header />
-		<main>
-			<article class="typo article">
-				{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+<Base title={title} description={description}>
+		<article class="typo article">
+				{heroImage && <img class="hero-image" src={heroImage} alt="" />}
 				<h1 class="title">{title}</h1>
 				{pubDate && <time>{pubDate}</time>}
 				{updatedDate && (
@@ -35,10 +25,8 @@ if(showArticleHeroImage && _images && _images.length){
 						Last updated on <time>{updatedDate}</time>
 					</div>
 				)}
+				{filePath && <a href={githubURL+"/article"+filePath} target="_blank" style="margin: 6px 0;display: inline-block;">在Github编辑</a>}
 				<hr />
 				<slot />
 			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+</Base>

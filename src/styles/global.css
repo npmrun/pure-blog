@@ -4,20 +4,61 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
-html {
+html, body {
   background: #eee;
+  height: 100%;
 }
-body {
-  width: 95%;
-  max-width: 960px;
-  background: #fff;
-  margin: 3em auto 0;
-  padding-top: 2em;
+.layout{
+  display: flex;
+  min-height: 100%;
+  /* margin: 3em auto 0; */
+  /* padding-top: 2em; */
   border: 1px solid #ddd;
   border-width: 0 1px;
-  padding: 5% 6% 5%;
   position: relative;
   box-sizing: border-box;
+}
+.layout .left{
+  background: #fff;
+  margin-right: 20px;
+}
+.layout .right{
+  flex: 1;
+  width: 0;
+  background: #fff;
+  padding: 5% 6% 5%;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.layout .right main{
+  flex: 1;
+  height: 0;
+}
+.layout .left .sticky{
+  position: sticky;
+  top: 0;
+}
+@media screen and (max-width: 1028px) {
+  .layout{
+    display: block;
+    margin: 1em;
+    border: 0;
+  }
+  .layout .left{
+    margin: 0;
+    margin-bottom: 15px;
+  }
+  .layout .right{
+    flex: auto;
+    width: auto;
+    margin: 0;
+  }
+}
+@media screen and (min-width: 1028px) {
+  .layout .right{
+    margin: 0;
+  }
 }
 
 ::-webkit-scrollbar-track {

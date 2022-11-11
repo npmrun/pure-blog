@@ -1,0 +1,28 @@
+---
+import DocTreeSelf from "./DocTreeSelf.astro"
+export type One = {
+  name: string
+  data?: any
+  children: One[]
+}
+
+export interface Props {
+  list: One[]
+}
+
+const { list } = Astro.props as Props
+
+function isActive(url: string){
+  return decodeURIComponent(Astro.url.pathname.replace(/\/$/, '')).startsWith(url);
+}
+---
+
+{list.map(v=>{
+    return <details open={isActive(v.active)}>
+      <summary>
+        {!v.data && <span class="tree-item">{v.name}</span>}
+        {!!v.data && <a href={v.data.url} class="tree-item tree-md-file">{v.name}</a>}
+      </summary>
+      {Array.isArray(v.children) && <Astro.self list={v.children} />}
+    </details>
+  })}

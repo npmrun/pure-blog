@@ -1,0 +1,40 @@
+---
+import BaseHead from '@blog/components/BaseHead.astro';
+import Header from '@blog/components/Header.astro';
+import Footer from '@blog/components/Footer.astro';
+import { publishedTree } from "@blog/utils"
+import DocTree from "@blog/components/DocTree/DocTree.astro"
+
+const articles = await publishedTree()
+
+export interface Props {
+	title: string
+	description: string
+}
+
+let { title, description } = Astro.props as Props
+---
+
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body>
+    <div class="layout">
+      <div class="left">
+        <div class="sticky">
+          <Header title={title}/>
+          <DocTree list={articles}></DocTree>
+        </div>
+      </div>
+      <div class="right">
+        <main>
+          <slot />
+        </main>
+        <Footer />
+      </div>
+    </div>
+	</body>
+</html>
