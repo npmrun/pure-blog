@@ -19,9 +19,9 @@ function isActive(url: string){
 
 {list.map(v=>{
     return <details open={isActive(v.active)}>
-      <summary>
-        {!v.data && <span class="tree-item">{v.name}</span>}
-        {!!v.data && <a href={v.data.url} class="tree-item tree-md-file">{v.name}</a>}
+      <summary class:list={[isActive(v.active)?'active':'']}>
+        {!v.data && <span class:list={["tree-item"]}>{v.name}</span>}
+        {!!v.data && <a href={v.data.url} class:list={["tree-item tree-md-file"]}>{v.name}</a>}
       </summary>
       {Array.isArray(v.children) && <Astro.self list={v.children} />}
     </details>
