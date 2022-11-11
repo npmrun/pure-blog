@@ -3,7 +3,7 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
-@font-face {
+ @font-face {
   font-family: Work Sans;
   font-style: normal;
   font-display: swap;
@@ -42,6 +42,11 @@ html, body {
 }
 .layout .left{
   background: #fff;
+  direction: rtl;
+  height: 100vh;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
 }
 .layout .right{
   flex: 1;
@@ -55,9 +60,8 @@ html, body {
   flex: 1;
   height: 0;
 }
-.layout .left .sticky{
-  position: sticky;
-  top: 0;
+.layout .left .wrapper{
+  direction: ltr;
 }
 @media screen and (max-width: 1028px) {
   .layout{
@@ -68,6 +72,8 @@ html, body {
   .layout .left{
     margin: 0;
     margin-bottom: 15px;
+    position: relative;
+    height: auto;
   }
   .layout .right{
     flex: auto;
