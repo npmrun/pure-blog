@@ -2,12 +2,7 @@
 .serif {
   font-family: Palatino, Optima, Georgia, serif;
 }
-.typo .hero-image{
-  display: block;
-  height: 460px;
-  width: 100%;
-  object-fit: cover;
-}
+
 .typo code {
   color: #1abc9c;
   background-color: #1abc9c13;
@@ -18,7 +13,7 @@
   padding: 0;
   font-size: inherit;
   color: inherit;
-  white-space: pre-wrap;
+  white-space: pre;
   background-color: transparent;
   border-radius: 0;
 }

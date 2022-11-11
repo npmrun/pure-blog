@@ -15,7 +15,9 @@
     "astro": "^1.6.0",
     "github-slugger": "^2.0.0",
     "hast-util-to-string": "^2.0.0",
-    "remark-directive": "^2.0.1"
+    "prism-theme-vars": "^0.2.4",
+    "remark-directive": "^2.0.1",
+    "sass": "^1.56.1"
   },
   "devDependencies": {
     "@types/node": "^18.11.9"

@@ -16,8 +16,8 @@ if(showArticleHeroImage && _images && _images.length){
 }
 ---
 <Base title={title} description={description}>
+		{heroImage && <img class="hero-image" src={heroImage} alt="" />}
 		<article class="typo article">
-				{heroImage && <img class="hero-image" src={heroImage} alt="" />}
 				<h1 class="title">{title}</h1>
 				{pubDate && <time>{pubDate}</time>}
 				{updatedDate && (

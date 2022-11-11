@@ -8,16 +8,20 @@ html, body {
   background: #eee;
   height: 100%;
 }
-.layout{
-  width: 95%;
-  max-width: 1280px;
-  margin: 3em auto 0;
+.layout .right{
+  margin: 1em;
 }
-@media screen and (max-width: 1280px) {
+/* .layout{
+  width: 95%; 
+  max-width: 1280px;
+  margin: 0 auto 0;
+} */
+
+/* @media screen and (max-width: 1280px) {
   .layout{
     margin: .5em auto .5em !important;
   }
-}
+} */
 .layout{
   display: flex;
   min-height: 100%;
@@ -30,13 +34,11 @@ html, body {
 }
 .layout .left{
   background: #fff;
-  margin-right: 20px;
 }
 .layout .right{
   flex: 1;
   width: 0;
   background: #fff;
-  padding: 5% 6% 5%;
   margin: 1em;
   display: flex;
   flex-direction: column;
@@ -52,7 +54,7 @@ html, body {
 @media screen and (max-width: 1028px) {
   .layout{
     display: block;
-    margin: 1em;
+    margin: .5em;
     border: 0;
   }
   .layout .left{
@@ -67,7 +69,21 @@ html, body {
 }
 @media screen and (min-width: 1028px) {
   .layout .right{
-    margin: 0;
+    margin: 2em 1em 1em;
+  }
+}
+.article{
+  padding: 1em 1.2em 1em;
+}
+.hero-image{
+  display: block;
+  height: 460px;
+  width: 100%;
+  object-fit: cover;
+}
+@media screen and (max-width: 1028px) {
+  .hero-image{
+    height: 200px;
   }
 }
 

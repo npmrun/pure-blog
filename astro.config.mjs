@@ -8,6 +8,7 @@ import Directive from 'remark-directive';
 export default defineConfig({
   site: 'https://example.com',
   markdown: {
+    syntaxHighlight: "prism",
     extendDefaultPlugins: true,
     remarkPlugins: [Directive, [remarkBlock, {}]],
   },
