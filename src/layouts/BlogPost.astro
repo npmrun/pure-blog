@@ -3,13 +3,15 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { single, published, getPost } from '@blog/utils';
-import type { Post } from '#/post';
+import type { Post, PostProps } from '#/post';
 import { showArticleHeroImage } from "@blog/config"
 
-export interface Props {
-	content: any
+export interface extendProps {
+
 }
-let { title, description, pubDate, updatedDate, heroImage, _images } = getPost(Astro.props as Props)
+export type Props = Partial<PostProps> & extendProps
+
+let { title, description, pubDate, updatedDate, heroImage, _images } = getPost(Astro.props as Props) as Props
 
 if(showArticleHeroImage && _images && _images.length){
 	heroImage = _images[0].url

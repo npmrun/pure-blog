@@ -4,10 +4,13 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { single, published, getPost } from '@blog/utils';
 
-export interface Props {
-	content: any
+export interface extendProps {
+	title: string
+	description: string
 }
-let { title, description } = getPost(Astro.props as Props)
+export type Props = Partial<PostProps> & extendProps
+
+let { title, description } = getPost(Astro.props as Props) as Props
 ---
 <!DOCTYPE html>
 <html lang="zh">

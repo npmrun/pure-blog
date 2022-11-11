@@ -25,7 +25,7 @@ const posts = await published()
 				color: #8e32dc;
 			}
 		</style>
-<Page content={{title: SITE_TITLE + '-文章', description: SITE_DESCRIPTION}}>
+<Page title={SITE_TITLE + '-文章'} description={SITE_DESCRIPTION}>
 	<section>
 				<ul>
 					{posts.map((post) => (

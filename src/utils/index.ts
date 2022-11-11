@@ -124,8 +124,8 @@ export async function published(): Promise<Post[]> {
 /**
  * 获取Astro.props的文章数据，判断是不是解析过了
  */
-export function getPost(props: any): Post {
-  const { content, frontmatter } = props;
+export function getPost(props: any): any {
+  const { frontmatter } = props;
   const isMd = !!frontmatter;
-  return isMd ? single(props) : content;
+  return isMd ? single(props) : props;
 }
