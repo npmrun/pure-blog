@@ -22,11 +22,19 @@ let { title, description } = Astro.props as Props
 	</head>
 
 	<body>
-		<Header title={title}/>
-    <DocTree list={articles}></DocTree>
-		<main>
-			<slot />
-		</main>
-		<Footer />
+    <div class="layout">
+      <div class="left">
+        <div class="sticky">
+          <Header title={title}/>
+          <DocTree list={articles}></DocTree>
+        </div>
+      </div>
+      <div class="right">
+        <main>
+          <slot />
+        </main>
+        <Footer />
+      </div>
+    </div>
 	</body>
 </html>

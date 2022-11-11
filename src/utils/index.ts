@@ -17,7 +17,7 @@ function co(data: any, cb: any){
         let key = array[i].slice(1)
         const tempArr = key.split("/")
         if(value.isDraft){
-          tempArr[1] = "草稿(发布时不会显示)"
+          tempArr[1] = "草稿"
         }
         let num = 1 // 从内部文件夹开始
         let curFiles = result;
@@ -28,6 +28,7 @@ function co(data: any, cb: any){
                 // 文件夹
                 let v = {
                     name: temp,
+                    active: "ss",
                     data: undefined,
                     children: []
                 }

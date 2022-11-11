@@ -11,10 +11,17 @@ export interface Props {
 }
 
 const { list } = Astro.props as Props
+
+function isActive(url: string){
+  // console.log(decodeURIComponent(Astro.url.pathname.replace(/\/$/, '')), url)
+  // return Astro.url.pathname.replace(/\/$/, '').startsWith(url);
+}
 ---
 
 {list.map(v=>{
-    return <details open="true">
+    console.log(v)
+    v.data && isActive(v.data.url)
+    return <details>
       <summary>
         {!v.data && <span class="tree-item">{v.name}</span>}
         {!!v.data && <a href={v.data.url} class="tree-item tree-md-file">{v.name}</a>}
