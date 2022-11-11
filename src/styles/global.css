@@ -9,6 +9,16 @@ html, body {
   height: 100%;
 }
 .layout{
+  width: 95%;
+  max-width: 1100px;
+  margin: 3em auto 0;
+}
+@media screen and (max-width: 1028px) {
+  .layout{
+    margin: .5em auto .5em !important;
+  }
+}
+.layout{
   display: flex;
   min-height: 100%;
   /* margin: 3em auto 0; */
