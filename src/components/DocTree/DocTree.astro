@@ -1,5 +1,6 @@
 ---
 import DocTreeSelf from "./DocTreeSelf.astro"
+import {githubNewURL} from "@blog/config"
 export type One = {
   name: string
   data?: any
@@ -14,6 +15,7 @@ export interface Props {
     <details open="true">
       <summary>
         <span class="tree-item">文章</span>
+        <a href={githubNewURL+"/article"} target="_blank" class="op">新建</a>
       </summary>
       <DocTreeSelf {...Astro.props}></DocTreeSelf>
     </details>
@@ -33,6 +35,8 @@ export interface Props {
     outline: 0;
     padding-left: 20px;
     list-style: none;
+    display: flex;
+    align-items: center;
     /* display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -59,6 +63,15 @@ export interface Props {
 summary.active{
   background: #1abc9c1a !important;
 }
+.op{
+  display: none;
+  font-size: .5em;
+  margin-left: 1em;
+  margin-right: 2.5em;
+}
+summary:hover .op{
+  display: block;
+}
 /* summary.active .tree-item::after{
   content: "";
   opacity: 1;
@@ -66,7 +79,12 @@ summary.active{
 } */
 
 .tree-item{
-    display: flex;
+    flex: 1;
+    width: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-flex;
     align-items: center;
     height: 30px;
     font-size: 15px;

@@ -29,7 +29,7 @@ function co(data: any, cb: any){
                 let v = {
                     name: temp,
                     active: "/post/"+tempArr.slice(1).slice(0, num).join('/').replace(/\.(md|mdx)$/g, ''),
-                    path: array[i],
+                    path: "/article/"+tempArr.slice(1).slice(0, num).join('/').replace(/\.(md|mdx)$/g, ''),
                     data: undefined,
                     children: []
                 }

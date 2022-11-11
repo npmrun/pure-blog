@@ -13,3 +13,4 @@ export const showArticleHeroImage = false
 
 // 注意最后的main为当前所在分支
 export const githubURL = 'https://github.com/npmrun/pure-blog/edit/main'
+export const githubNewURL = 'https://github.com/npmrun/pure-blog/new/main'
