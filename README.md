@@ -2,6 +2,10 @@
 
 一个简单展示文章的界面，中文排版优先
 
+## 使用
+
+> 最好不要取有特殊字符的标题
+
 ## 部署
 [![](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/npmrun/pure-blog)
 
