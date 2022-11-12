@@ -1,17 +1,19 @@
 ---
 import { single, published, getPost } from '@blog/utils';
 import type { Post, PostProps } from '#/post';
+import { githubURL } from "@blog/config"
 import Base from "./_ui/Base.astro"
 
 export interface extendProps {
-
+	filePath: string
 }
 export type Props = Partial<PostProps> & extendProps
 
-let { title, description, pubDate, updatedDate, heroImage, _images } = getPost(Astro.props as Props) as Props
+let { title, description, filePath } = getPost(Astro.props as Props) as Props
 ---
 <Base title={title} description={description}>
 	<article class="typo article">
+	{filePath && <a href={githubURL+filePath} target="_blank" style="margin: 6px 0;display: inline-block;">在Github编辑</a>}
 		<slot />
 	</article>
 </Base>

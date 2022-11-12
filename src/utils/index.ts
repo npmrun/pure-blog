@@ -30,6 +30,7 @@ function co(data: any, cb: any){
                     name: temp,
                     active: "/post/"+tempArr.slice(1).slice(0, num).join('/').replace(/\.(md|mdx)$/g, ''),
                     path: "/article/"+tempArr.slice(1).slice(0, num).join('/').replace(/\.(md|mdx)$/g, ''),
+                    filePath: "/article/"+tempArr.slice(1).slice(0, num).join('/'),
                     data: undefined,
                     children: []
                 }
@@ -82,14 +83,15 @@ export function single(post: MarkdownInstance<any>): Post {
     .slice(1)
     .replace(/\.(md|mdx)$/g, '');
   let url = post.url;
+  let filePath = '/src/pages' + post.file.replace(articleRoute, '')
   if (!isRoute) {
     slug = post.file
       .replace(articleDir, '')
       .slice(1)
       .replace(/\.(md|mdx)$/g, '');
     url = '/post/' + slug;
+    filePath = post.file.replace(articleDir, '')
   }
-  let filePath = post.file.replace(articleDir, '')
   const isDraft = slug.split('/')[0].startsWith('drafts');
   const isPages = !!isRoute;
   return {
