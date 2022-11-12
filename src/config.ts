@@ -5,7 +5,7 @@ const { MODE } = import.meta.env;
 export const isDev = MODE === 'development';
 export const isProd = MODE === 'production';
 
-export const SITE_TITLE = '简单博客';
+export const SITE_TITLE = '编程百科';
 export const SITE_DESCRIPTION = '花径不曾缘客扫，蓬门今始为君开!';
 
 // If any images in article, then show the first on the top.
