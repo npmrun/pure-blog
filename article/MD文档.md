@@ -6,7 +6,9 @@ heroImage: "https://api.r10086.com/%E5%9B%BE%E5%8C%85/%E4%B8%BA%E7%BE%8E%E5%A5%B
 ---
 
 # Welcome to Leanote! 欢迎来到Leanote!
- 
+ - [ ] sad
+ - [x] sad
+ - [ ] sad
 ## 1. 排版
  
 **粗体** *斜体* 
