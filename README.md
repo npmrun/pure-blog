@@ -6,6 +6,8 @@
 
 文章可以直接在`article`下写，`article/drafts`目录下的是草稿，不会发布在正式版中，但会显示在开发版中。
 
+需要使用在Github新增或编辑功能的需要在`src/config.ts`自行配置Github相关。
+
 文章可用元数据如下：
 ```
 title: Markdown测试       <!-- 必须，文章标题 -->
