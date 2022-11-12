@@ -1,6 +1,7 @@
 ---
 import DocTreeSelf from "./DocTreeSelf.astro"
 import {githubNewURL, githubURL} from "@blog/config"
+import { betterDirectorySort } from "@blog/utils/better-directory-sort"
 export type One = {
   name: string
   data?: any
@@ -16,9 +17,16 @@ const { list } = Astro.props as Props
 function isActive(url: string){
   return decodeURIComponent(Astro.url.pathname.replace(/\/$/, '')).startsWith(url);
 }
+
+const showList = list.sort((a, b) => {
+  return betterDirectorySort(
+    { name: a.name, isDirectory: !a.data },
+    { name: b.name, isDirectory: !b.data },
+  );
+});
 ---
 
-{list.map(v=>{
+{showList.map(v=>{
     const url = v.path
     return <details open={isActive(v.active)}>
       <summary class:list={[isActive(v.active)?'active':'']}>

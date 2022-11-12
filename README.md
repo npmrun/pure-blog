@@ -15,3 +15,4 @@ https://pure-blog.netlify.app/
 - [heti](https://github.com/sivan/heti)
 - [github-slugger](https://github.com/Flet/github-slugger)
 - [hast-util-to-string](https://github.com/rehypejs/rehype-minify/tree/main)
+- [better-directory-sort](https://www.npmjs.com/package/better-directory-sort)
