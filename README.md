@@ -12,6 +12,13 @@
 ## Demo
 https://pure-blog.netlify.app/
 
+## 是否可支持特性
+
+考虑可能添加的特性，有具体方案的可以提issue。
+
+- [ ] 备份
+- [ ] 导出
+
 
 ## 致谢开源项目
 - [astro](https://github.com/withastro/astro) 
