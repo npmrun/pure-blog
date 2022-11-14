@@ -7,6 +7,6 @@ import { fileURLToPath } from 'url';
 // const __dirname = dirname(fileURLToPath(import.meta.url));
 // export const cwd = resolve(__dirname, '../../');
 
-export const cwd = process.cwd();
-export const articleDir = resolve(cwd, './article');
-export const articleRoute = resolve(cwd, './src/pages');
+export const cwd = process.cwd(); // 路径符号不同的操作系统可能不同
+export const articleDir = resolve(cwd, './article').replace(/\\/g, "/");
+export const articleRoute = resolve(cwd, './src/pages').replace(/\\/g, "/");

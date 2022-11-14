@@ -2,6 +2,7 @@ import type { Post } from '#/post';
 import { isDev } from '@blog/config';
 import type { MarkdownInstance } from 'astro';
 import { articleDir, articleRoute } from '@blog/share';
+import path from 'path';
 
 function co(data: any, cb: any){
     const array = Object.keys(data)
@@ -84,6 +85,7 @@ export function single(post: MarkdownInstance<any>): Post {
     .replace(/\.(md|mdx)$/g, '');
   let url = post.url;
   let filePath = '/src/pages' + post.file.replace(articleRoute, '')
+  console.log(post.file, articleRoute, path.sep)
   if (!isRoute) {
     slug = post.file
       .replace(articleDir, '')
