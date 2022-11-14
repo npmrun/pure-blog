@@ -1,9 +1,8 @@
 ---
 layout: "@blog/layouts/BlogPage.astro"
 hideSide: true
+heroImage: https://w.wallhaven.cc/full/zy/wallhaven-zyxvqy.jpg
 ---
-
-![](https://w.wallhaven.cc/full/zy/wallhaven-zyxvqy.jpg)
 
 欢迎来到编程百科，本人不得不在说说在职业生涯中本人对本人十分不满的看法，经由此文章阐述，借此激励自己。
 
