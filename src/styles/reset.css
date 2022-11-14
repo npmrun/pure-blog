@@ -4,9 +4,8 @@
 html {
   color: #333;
   background: #fff;
-  /* 兼容性有些不好 */
-  /* -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%; */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
   text-rendering: optimizelegibility;
   height: 100%;
   margin: 0;
@@ -260,8 +259,7 @@ pre {
   border: 1px solid #ddd;
   padding: 1em 1.5em;
   display: block;
-  /* 兼容性有些不好 */
-  /* -webkit-overflow-scrolling: touch; */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* 一致化 horizontal rule */
