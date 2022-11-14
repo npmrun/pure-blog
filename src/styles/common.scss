@@ -126,6 +126,17 @@ html, body {
   }
 }
 
+// 标题栏
+header{
+  padding: 15px;
+  nav a{
+    margin: 0 .2em;
+  }
+  h2 {
+    margin: 0.5em 0;
+  }
+}
+// 底部
 footer {
   padding: 25px;
   text-align: center;
