@@ -16,6 +16,7 @@ html, body {
   background: #eee;
   height: 100%;
 }
+
 .toTop{
   position: fixed;
   bottom: 40px;
@@ -36,6 +37,7 @@ html, body {
   line-height: 1;
   box-sizing: content-box;
 }
+
 .layout{
   display: flex;
   min-height: 100%;
@@ -57,7 +59,7 @@ html, body {
     padding: 1em;
     width: 300px;
     box-sizing: border-box;
-    @include media-pc(sm){
+    @include media-pc(md){
       display: none;
     }
   }
