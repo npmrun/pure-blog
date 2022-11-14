@@ -4,6 +4,8 @@ import prefetch from '@astrojs/prefetch';
 import path from 'path';
 import remarkBlock from './plugins/remark-block.mjs';
 import Directive from 'remark-directive';
+// 尝试是否支持微信浏览器
+import legacy from '@vitejs/plugin-legacy'
 
 // https://astro.build/config
 export default defineConfig({
@@ -37,6 +39,10 @@ export default defineConfig({
         '#': path.resolve('./typings'),
       },
     },
-    plugins: [],
+    plugins: [
+      legacy({
+        targets: ['defaults', 'not IE 11']
+      })
+    ],
   },
 });
