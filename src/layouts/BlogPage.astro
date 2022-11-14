@@ -16,6 +16,7 @@ let { title, description, filePath, _head, hideSide = false } = getPost(Astro.pr
 <Base title={title} description={description} hideSide={hideSide}>
 	<article class="typo article">
 	{filePath && <a href={githubURL+filePath} target="_blank" style="margin: 6px 0;display: inline-block;">在Github编辑</a>}
+		{filePath && <hr>}
 		<slot />
 	</article>
 	<HeadTree slot="side" head={_head}></HeadTree>
