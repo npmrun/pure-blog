@@ -13,6 +13,7 @@ export interface Props {
 }
 
 let { title, description } = Astro.props as Props
+
 ---
 
 <!DOCTYPE html>
@@ -35,6 +36,9 @@ let { title, description } = Astro.props as Props
         </main>
         <Footer />
       </div>
+      <!-- <div class="side">
+        <slot name="side"/>
+      </div> -->
     </div>
 	</body>
 </html>

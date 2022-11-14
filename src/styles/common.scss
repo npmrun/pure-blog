@@ -29,6 +29,18 @@ html, body {
     margin: .5em;
     border: 0;
   }
+  .side{
+    background: #fff;
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    padding: 1em;
+    width: 300px;
+    @include media-pc(sm){
+      display: none;
+    }
+  }
   .left{
     background: #fff;
     direction: rtl;

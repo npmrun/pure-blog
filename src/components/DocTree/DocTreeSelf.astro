@@ -31,7 +31,7 @@ const showList = list.sort((a, b) => {
     return <details open={isActive(v.active)}>
       <summary class:list={[isActive(v.active)?'active':'']}>
         {!v.data && <><span title={v.name} class:list={["tree-item"]}>{v.name}</span><a target="_blank" href={githubNewURL+url} class="op">新建</a></>}
-        {!!v.data && <><a href={v.data.url} title={v.name} class:list={["tree-item tree-md-file"]}>{v.name}</a><a target="_blank" href={githubURL + v.filePath} class="op">编辑</a></>}
+        {!!v.data && <><a rel="prefetch" href={v.data.url} title={v.name} class:list={["tree-item tree-md-file"]}>{v.name}</a><a target="_blank" href={githubURL + v.filePath} class="op">编辑</a></>}
       </summary>
       {Array.isArray(v.children) && <Astro.self list={v.children} />}
     </details>
