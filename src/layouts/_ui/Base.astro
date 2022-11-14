@@ -10,9 +10,10 @@ const articles = await publishedTree()
 export interface Props {
 	title: string
 	description: string
+  hideSide: boolean
 }
 
-let { title, description } = Astro.props as Props
+let { title, description, hideSide } = Astro.props as Props
 
 ---
 
@@ -36,9 +37,11 @@ let { title, description } = Astro.props as Props
         </main>
         <Footer />
       </div>
-      <!-- <div class="side">
+      {!hideSide && <div class="side">
         <slot name="side"/>
-      </div> -->
+      </div>}
     </div>
+    <div class="toTop" id="toTop">回到顶部</div>
+    <script src="@blog/scripts/main.ts"></script>
 	</body>
 </html>

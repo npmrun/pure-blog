@@ -3,8 +3,10 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "module": "ESNext",
+    "lib": ["DOM"],
     "moduleResolution": "Node",
     "baseUrl": ".",
+    "downlevelIteration": true,
     "paths": {
       "@root/*": ["./*"],
       "@blog/*": ["src/*"],

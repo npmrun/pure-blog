@@ -5,11 +5,11 @@ import { showArticleHeroImage, githubURL } from "@blog/config"
 import Base from "./_ui/Base.astro"
 
 export interface extendProps {
-
+	
 }
 export type Props = Partial<PostProps> & extendProps
 
-let { title, description, pubDate, updatedDate, heroImage, _images, filePath} = getPost(Astro.props as Props) as Props
+let { title, description, pubDate, updatedDate, heroImage, _images, filePath, _head} = getPost(Astro.props as Props) as Props
 
 if(showArticleHeroImage && _images && _images.length){
 	heroImage = _images[0].url
@@ -30,7 +30,40 @@ if(showArticleHeroImage && _images && _images.length){
 				<hr />
 				<slot />
 		</article>
-		<!-- <div slot="side">
-			sadsad
-		</div> -->
+		<ul slot="side">
+			<div class="title">目录</div>
+		{
+                            !!_head &&
+                            !!_head.length && (
+                                <>
+																{_head.map((v) => (
+                                                <li><a
+                                                    class="head"
+                                                    style={{
+                                                        marginLeft:
+                                                            (v.level - 1) * 15 +
+                                                            "px",
+                                                        "overflow-x": "hidden",
+                                                        "white-space": "nowrap",
+                                                        "text-overflow": "ellipsis"
+                                                    }}
+                                                    href={"#" + v.title}
+                                                >
+                                                    # {v.title}
+                                                </a></li>
+                                            ))}
+																</>
+                            )
+		}
+		</ul>
 </Base>
+
+<style lang="scss">
+			ul{
+				.title{
+					height: 35px;
+					line-height: 35px;
+					font-weight: bold;
+				}
+			}
+		</style>
