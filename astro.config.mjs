@@ -15,7 +15,8 @@ export default defineConfig({
   },
   integrations: [
     prefetch({
-      selector: "a[href^='/post']"
+      selector: "a[href^='/post']",
+      throttle: 3
     })
   ],
   vite: {
