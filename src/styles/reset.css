@@ -260,7 +260,8 @@ pre {
   border: 1px solid #ddd;
   padding: 1em 1.5em;
   display: block;
-  -webkit-overflow-scrolling: touch;
+  /* 兼容性有些不好 */
+  /* -webkit-overflow-scrolling: touch; */
 }
 
 /* 一致化 horizontal rule */
