@@ -82,10 +82,10 @@ topEl.addEventListener("click", (e)=>{
 function init(){
   const top = document.documentElement.scrollTop;
   if(top > 250){
-    topEl.style.opacity = 1
+    topEl.style.opacity = '1'
     topEl.style.pointerEvents = "auto"
   }else{
-    topEl.style.opacity = 0
+    topEl.style.opacity = '0'
     topEl.style.pointerEvents = "none"
   }
 }
