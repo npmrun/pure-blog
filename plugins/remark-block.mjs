@@ -33,6 +33,21 @@ export default function calloutsPlugin() {
     file.data.astro.frontmatter._head = head;
 
     visit(tree, (node) => {
+      if(node.value === "[TOC]"){
+        node.type = "html";
+        const head = file.data.astro.frontmatter._head
+        let array = []
+        for(let i = 0; i < head.length; i++){
+          const v = head[i]
+          array.push(`<li><a title="${v.title}" href="#${v.title}" style="overflow-x: hidden;white-space: nowrap;text-overflow: ellipsis;margin-left:${(v.level - 1) * 15}px"># ${v.title}</a></li>`)
+        }
+        node.value = `<ul class="toc">
+          ${array.join("")}
+        </ul>`
+      }
+    })
+
+    visit(tree, (node) => {
       if (node.type === 'containerDirective') {
         if (node.name !== 'card') return;
         const data = node.data || (node.data = {});

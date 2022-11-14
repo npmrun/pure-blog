@@ -199,3 +199,12 @@ caption {
 .typo img {
   max-width: 100%;
 }
+
+.typo ul.toc li{
+  list-style-type: none;
+}
+.typo ul.toc li a {
+  text-decoration: none;
+  border: 0;
+  list-style-type: none;
+}

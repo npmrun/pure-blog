@@ -36,6 +36,9 @@ html, body {
   text-align: center;
   line-height: 1;
   box-sizing: content-box;
+  @include media-pc(sm){
+    display: none;
+  }
 }
 
 .layout{
