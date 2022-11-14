@@ -1,6 +1,7 @@
 ---
 layout: "@blog/layouts/BlogPage.astro"
 title: 自荐
+hideSide: true
 pubDate: 2022/12/12
 updatedDate: 2023/01/01
 ---

@@ -3,20 +3,21 @@ import { single, published, getPost } from '@blog/utils';
 import type { Post, PostProps } from '#/post';
 import { showArticleHeroImage, githubURL } from "@blog/config"
 import Base from "./_ui/Base.astro"
+import HeadTree from "@blog/components/HeadTree.astro"
 
 export interface extendProps {
-	
+	hideSide: boolean
 }
 export type Props = Partial<PostProps> & extendProps
 
-let { title, description, pubDate, updatedDate, heroImage, _images, filePath, _head} = getPost(Astro.props as Props) as Props
+let { title, description, pubDate, updatedDate, heroImage, _images, filePath, _head, hideSide= false } = getPost(Astro.props as Props) as Props
 
 if(showArticleHeroImage && _images && _images.length){
 	heroImage = _images[0].url
 }
 
 ---
-<Base title={title} description={description}>
+<Base title={title} description={description} hideSide={hideSide}>
 		{heroImage && <img class="hero-image" src={heroImage} alt="" />}
 		<article class="typo article">
 				<h1 class="title">{title}</h1>
@@ -30,40 +31,5 @@ if(showArticleHeroImage && _images && _images.length){
 				<hr />
 				<slot />
 		</article>
-		<ul slot="side">
-			<div class="title">目录</div>
-		{
-                            !!_head &&
-                            !!_head.length && (
-                                <>
-																{_head.map((v) => (
-                                                <li><a
-                                                    class="head"
-                                                    style={{
-                                                        marginLeft:
-                                                            (v.level - 1) * 15 +
-                                                            "px",
-                                                        "overflow-x": "hidden",
-                                                        "white-space": "nowrap",
-                                                        "text-overflow": "ellipsis"
-                                                    }}
-                                                    href={"#" + v.title}
-                                                >
-                                                    # {v.title}
-                                                </a></li>
-                                            ))}
-																</>
-                            )
-		}
-		</ul>
+		<HeadTree slot="side" head={_head}></HeadTree>
 </Base>
-
-<style lang="scss">
-			ul{
-				.title{
-					height: 35px;
-					line-height: 35px;
-					font-weight: bold;
-				}
-			}
-		</style>

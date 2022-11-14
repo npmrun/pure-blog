@@ -4,6 +4,7 @@ export type PostProps = {
   title: string // 文章标题
   slug: string
   desc: string // 文章描述
+  hideSide: boolean // 是否隐藏右侧边栏
   author: string // 文章作者
   pubDate: string // 文章创建时间
   updatedDate: string // 文章更新时间
