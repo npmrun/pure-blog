@@ -4,8 +4,9 @@
 html {
   color: #333;
   background: #fff;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+  /* 兼容性有些不好 */
+  /* -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; */
   text-rendering: optimizelegibility;
   height: 100%;
   margin: 0;
