@@ -4,6 +4,8 @@ import prefetch from '@astrojs/prefetch';
 import path from 'path';
 import remarkBlock from './plugins/remark-block.mjs';
 import Directive from 'remark-directive';
+import robotsTxt from "astro-robots-txt";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +19,9 @@ export default defineConfig({
     prefetch({
       selector: "a[href^='/post']",
       throttle: 3
-    })
+    }),
+    sitemap(),
+    robotsTxt(),
   ],
   vite: {
     css: {

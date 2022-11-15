@@ -3,6 +3,9 @@ import DocTreeSelf from "./DocTreeSelf.astro"
 import {githubNewURL} from "@blog/config"
 export type One = {
   name: string
+  path: string
+  active: string
+  filePath: string
   data?: any
   children: One[]
 }
@@ -70,7 +73,7 @@ summary.active{
 }
 .op{
   display: none;
-  font-size: .5em;
+  font-size: .8em;
   margin-left: 1em;
   margin-right: 2.5em;
 }

@@ -13,7 +13,10 @@
   "dependencies": {
     "@astrojs/mdx": "^0.11.5",
     "@astrojs/prefetch": "^0.1.1",
+    "@astrojs/rss": "^1.0.3",
+    "@astrojs/sitemap": "^1.0.0",
     "astro": "^1.6.0",
+    "astro-robots-txt": "^0.3.10",
     "github-slugger": "^2.0.0",
     "hast-util-to-string": "^2.0.0",
     "prism-theme-vars": "^0.2.4",

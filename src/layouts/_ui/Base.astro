@@ -4,12 +4,13 @@ import Header from '@blog/components/Header.astro';
 import Footer from '@blog/components/Footer.astro';
 import { publishedTree } from "@blog/utils"
 import DocTree from "@blog/components/DocTree/DocTree.astro"
+import { SITE_LANG } from '@blog/config';
 
 const articles = await publishedTree()
 
 export interface Props {
-	title: string
-	description: string
+  title: string
+  description: string
   hideSide: boolean
 }
 
@@ -18,7 +19,7 @@ let { title, description, hideSide } = Astro.props as Props
 ---
 
 <!DOCTYPE html>
-<html lang="zh">
+<html lang={ SITE_LANG }>
 	<head>
 		<BaseHead title={title} description={description} />
 	</head>

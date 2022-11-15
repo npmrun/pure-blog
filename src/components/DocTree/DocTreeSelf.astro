@@ -4,6 +4,9 @@ import {githubNewURL, githubURL} from "@blog/config"
 import { betterDirectorySort } from "@blog/utils/better-directory-sort"
 export type One = {
   name: string
+  path: string
+  active: string
+  filePath: string
   data?: any
   children: One[]
 }
