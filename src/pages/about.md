@@ -2,9 +2,21 @@
 layout: "@blog/layouts/BlogPage.astro"
 title: 自荐
 hideSide: true
-pubDate: 2022/12/12
-updatedDate: 2023/01/01
 ---
 
 > 佛曰：人生有八苦：生，老，病，死，爱别离，怨长久，求不得，放不下。
 
+有倾诉，有建议，欢迎联系，可通过以下方式找到我。
+
+## 邮箱
+
+1. 1549469775@qq.com
+2. kk1549469775@gmail.com
+
+## Github
+
+[npmrum](https://github.com/npmrum)
+
+## 博客
+
+[xieyaxin.top](https://xieyaxin.top)
