@@ -10,9 +10,9 @@ export interface extendProps {
 }
 export type Props = Partial<PostProps> & extendProps
 
-let { title, description, pubDate, updatedDate, heroImage, _images, filePath, _head, hideSide= false } = getPost(Astro.props as Props) as Props
+let { title, description, pubTimestamp, updatedTimestamp, heroImage, _images, filePath, _head, hideSide= false } = getPost(Astro.props as Props) as Props
 
-if(showArticleHeroImage && _images && _images.length){
+if(showArticleHeroImage && _images && !!_images.length){
 	heroImage = _images[0].url
 }
 
@@ -21,10 +21,26 @@ if(showArticleHeroImage && _images && _images.length){
 		{heroImage && <img class="hero-image" src={heroImage} alt="" />}
 		<article class="typo article">
 				<h1 class="title">{title}</h1>
-				{pubDate && <time>{pubDate}</time>}
-				{updatedDate && (
+				{!!pubTimestamp && <time>
+                    创建于 {new Date(pubTimestamp).toLocaleDateString('zh-cn', {
+						year: 'numeric',
+						month: 'short',
+						day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+					})}
+                </time>}
+				{!!updatedTimestamp && (
 					<div>
-						Last updated on <time>{updatedDate}</time>
+						上次修改于 <time>{new Date(updatedTimestamp).toLocaleDateString('zh-cn', {
+						year: 'numeric',
+						month: 'short',
+						day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+					})}</time>
 					</div>
 				)}
 				{filePath && <a href={githubURL+"/article"+filePath} target="_blank" style="margin: 6px 0;display: inline-block;">在Github编辑</a>}

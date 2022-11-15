@@ -23,9 +23,23 @@ export type PostProps = {
   mode?: 'indent' // 首行段落是否缩进
   comment: boolean // 是否可以评论
   theme: 'github' | 'normal' // 是否可以评论
+
+  url: string
+  _head: {
+    level: number,
+    title: string
+  }[],
+  _images: {
+    name: string,
+    alt: string,
+    url: string,
+  }[],
+  _rawString: string,
+  heroImage: string,
+  description: string,
+  filePath: string
 }
 
 export type Post = {
   file: URL
-  filePath: string
 } & PostProps;

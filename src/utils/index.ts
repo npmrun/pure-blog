@@ -2,7 +2,6 @@ import type { Post } from '#/post';
 import { isDev } from '@blog/config';
 import type { MarkdownInstance } from 'astro';
 import { articleDir, articleRoute } from '@blog/share';
-import path from 'path';
 
 function co(data: any, cb: any){
     const array = Object.keys(data)
@@ -95,6 +94,33 @@ export function single(post: MarkdownInstance<any>): Post {
   }
   const isDraft = slug.split('/')[0].startsWith('drafts');
   const isPages = !!isRoute;
+
+//   优点是不用自己每个都写时间与更新时间，但这是基于本地的，如果在一台新电脑上时间肯定对不上，可以考虑写入文件内
+//   const stat = fs.statSync(post.file);
+//   const mtimeMs = stat.mtimeMs
+//   const birthtimeMs = stat.birthtimeMs
+//   let pubTimestamp = birthtimeMs
+//   if(!post.frontmatter.pubDate){
+//     post.frontmatter.pubDate = dateTimeFormat(birthtimeMs, "yyyy/MM/dd HH:mm:ss")
+//   }else{
+//     pubTimestamp = new Date(post.frontmatter.pubDate).valueOf()
+//   }
+//   let updatedTimestamp = mtimeMs
+//   if(!post.frontmatter.updatedDate){
+//     post.frontmatter.updatedDate = dateTimeFormat(mtimeMs, "yyyy/MM/dd HH:mm:ss")
+//   }else{
+//     updatedTimestamp = new Date(post.frontmatter.updatedDate).valueOf()
+//   }
+
+  let pubTimestamp = 0
+  if(post.frontmatter.pubDate){
+    pubTimestamp = new Date(post.frontmatter.pubDate).valueOf()
+  }
+  let updatedTimestamp = 0
+  if(post.frontmatter.updatedDate){
+    updatedTimestamp = new Date(post.frontmatter.updatedDate).valueOf()
+  }
+
   return {
     ...post.frontmatter,
     Content: post.Content,
@@ -103,12 +129,8 @@ export function single(post: MarkdownInstance<any>): Post {
     url, // 如果在src/pages目录外，此时url为undefined,那么就使用上面的slug手动拼接路由
     isDraft,
     isPages,
-    pubTimestamp: !!post.frontmatter.pubDate
-      ? new Date(post.frontmatter.pubDate).valueOf()
-      : 0,
-    updatedTimestamp: !!post.frontmatter.updatedDate
-      ? new Date(post.frontmatter.updatedDate).valueOf()
-      : 0,
+    pubTimestamp: pubTimestamp,
+    updatedTimestamp: updatedTimestamp,
   };
 }
 

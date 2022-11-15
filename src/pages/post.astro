@@ -30,7 +30,7 @@ const posts = await published()
 				<ul>
 					{posts.map((post) => (
 						<li>
-							<time datetime={post.pubTimestamp}>
+							<time datetime={post.pubDate}>
 								{new Date(post.pubTimestamp).toLocaleDateString('zh-cn', {
 									year: 'numeric',
 									month: 'short',
