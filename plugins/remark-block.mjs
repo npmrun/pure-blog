@@ -34,7 +34,7 @@ export default function calloutsPlugin() {
     file.data.astro.frontmatter._head = head;
 
     visit(tree, (node) => {
-      if(node.value === "[TOC]"){
+      if(node.value === "[TOC]" && node.type === "text"){
         node.type = "html";
         const head = file.data.astro.frontmatter._head
         let array = []
