@@ -10,8 +10,8 @@ hideSide: true
 
 ## 邮箱
 
-1. 1549469775@qq.com
-2. kk1549469775@gmail.com
+1549469775@qq.com
+kk1549469775@gmail.com
 
 ## Github
 
