@@ -12,7 +12,7 @@ const { head } = Astro.props as Props
                             !!head.length && (
                                 <>
 																{head.map((v) => (
-                                                <li><a
+                                                <>{v.level <=  3 && <li><a
                                                     class="head"
                                                     style={{
                                                         marginLeft:
@@ -27,7 +27,7 @@ const { head } = Astro.props as Props
                                                     href={"#" + v.id}
                                                 >
                                                     # {v.title}
-                                                </a></li>
+                                                </a></li>}</>
                                             ))}
 																</>
                             )

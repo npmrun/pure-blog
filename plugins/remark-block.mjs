@@ -40,6 +40,7 @@ export default function calloutsPlugin() {
         let array = []
         for(let i = 0; i < head.length; i++){
           const v = head[i]
+          if(v.level > 3) continue;
           array.push(`<li><a title="${v.title}" href="#${v.id}" style="overflow-x: hidden;white-space: nowrap;text-overflow: ellipsis;margin-left:${(v.level - 1) * 15}px"># ${v.title}</a></li>`)
         }
         node.value = `<ul class="toc">

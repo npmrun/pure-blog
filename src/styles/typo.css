@@ -53,6 +53,19 @@ h6 {
   margin-top: 1.2em;
   margin-bottom: 0.6em;
   line-height: 1.35;
+  position: relative;
+}
+
+.typo h1:hover::before,
+.typo h2:hover::before,
+.typo h3:hover:before{
+    content: "#";
+    position: absolute;
+    right: calc(100% + 4px);
+    font-size: .8em;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #1abc9c;
 }
 
 .typo h1 {
@@ -97,6 +110,10 @@ h6 {
   list-style: circle;
 }
 
+.typo li ul li ul{
+    list-style: square;
+}
+
 /* 同 ul/ol，在文章中应用 table 基本格式 */
 .typo table th,
 .typo table td,
@@ -136,8 +153,6 @@ h6 {
 }
 .typo .task-list-item {
   list-style-type: none;
-  display: flex;
-  align-items: center;
 }
 .typo .task-list-item > input:nth-child(1) {
   margin-right: 6px;
@@ -158,12 +173,14 @@ h6 {
   display: none;
 }
 
-.typo .task-list-item-checkbox {
-  margin: 0 .2em .25em -1.6em;
+.typo .task-list-item input[type="checkbox"] {
+  margin: 0 .2em .1em -1.1em;
   vertical-align: middle;
+  width: .9em;
+  height:.9em;
 }
 
-.typo .contains-task-list:dir(rtl) .task-list-item-checkbox {
+.typo .contains-task-list:dir(rtl) .task-list-item input[type="checkbox"] {
   margin: 0 -1.6em .25em .2em;
 }
 
