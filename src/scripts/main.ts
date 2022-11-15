@@ -12,20 +12,30 @@ const allTitleSelector =
     ".article>h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]";
 const allHeadSelector = "a.head";
 const offset = 10
+let activeIndex = 0;
 function initColor() {
     const headElement = document.querySelectorAll(allHeadSelector);
-    [...document.querySelectorAll(allTitleSelector)].forEach((el, i) => {
+    [...(document.querySelectorAll(allTitleSelector) as unknown as HTMLDivElement[])].forEach((el, i) => {
         if (headElement[i]) {
             const top = el.getBoundingClientRect().top;
             if (top < offset) {
+                activeIndex = i
                 // @ts-ignore
                 headElement[i].style.color = "#8e32dc";
             } else {
                 // @ts-ignore
                 headElement[i].style.color = "";
             }
+            // @ts-ignore
+            headElement[i].parentElement.style.backgroundColor = "";
         }
     });
+    if(activeIndex!=-1){
+        // @ts-ignore
+        headElement[activeIndex].style.color = "#8e32dc";
+        // @ts-ignore
+        headElement[activeIndex].parentElement.style.backgroundColor = "#1abc9c1a";
+    }
 }
 initColor();
 window.addEventListener("scroll", function () {
