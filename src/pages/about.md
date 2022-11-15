@@ -15,7 +15,7 @@ hideSide: true
 
 ## Github
 
-[npmrum](https://github.com/npmrum)
+[npmrun](https://github.com/npmrun)
 
 ## 博客
 
