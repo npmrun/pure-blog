@@ -21,7 +21,7 @@ if(showArticleHeroImage && _images && !!_images.length){
 		{heroImage && <img class="hero-image" src={heroImage} alt="" />}
 		<article class="typo article">
 				<h1 class="title">{title}</h1>
-				{!!pubTimestamp && <div><time>
+				{!!pubTimestamp && <div style="font-size: 0.875em;"><time>
                     创建于 {new Date(pubTimestamp).toLocaleDateString('zh-cn', {
 						year: 'numeric',
 						month: 'short',
@@ -32,7 +32,7 @@ if(showArticleHeroImage && _images && !!_images.length){
 					})}
                 </time></div>}
 				{!!updatedTimestamp && (
-					<div>
+					<div style="font-size: 0.875em;">
 						上次修改于 <time>{new Date(updatedTimestamp).toLocaleDateString('zh-cn', {
 						year: 'numeric',
 						month: 'short',

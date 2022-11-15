@@ -114,11 +114,11 @@ img {
 /* 块/段落引用 */
 blockquote {
   position: relative;
-  color: #999;
+  color: #555;
   font-weight: 400;
   border-left: 6px solid #1abc9c;
   padding-left: 1em;
-  margin: 1em 3em 1em 0;
+  margin: 1em 0 1em 0;
   padding: 1em;
   background-color: #1abc9c1a;
 }
