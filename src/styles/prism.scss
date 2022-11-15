@@ -2,9 +2,9 @@
 @import "prism-theme-vars/base.css";
 
 :root {
-    --prism-font-size: 1.125em;
-    --prism-line-height: 1.3em;
-    --prism-font-family: Work Sans, monospace;
+    --prism-font-size: 1em;
+    --prism-line-height: 1.5em;
+    --prism-font-family: monospace;
     --prism-foreground: #393a34;
     --prism-background: #fbfbfb;
     --prism-comment: #a0ada0;
@@ -28,9 +28,9 @@
 
 :root[data-theme="night"] {
     --prism-scheme: dark;
-    --prism-font-size: 1.125em;
-    --prism-line-height: 1.3em;
-    --prism-font-family: Work Sans, monospace;
+    --prism-font-size: 1em;
+    --prism-line-height: 1.5em;
+    --prism-font-family: monospace;
     --prism-foreground: #d4cfbf;
     --prism-background: #1e1e1e;
     --prism-comment: #758575;
