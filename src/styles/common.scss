@@ -99,9 +99,7 @@ html, body {
       flex: 1;
       height: 0;
       margin: 0 1em;
-      .article{
-        background-color: #fff;
-      }
+      background-color: #fff;
       @include media-pc(sm){
         margin: 0;
       }
