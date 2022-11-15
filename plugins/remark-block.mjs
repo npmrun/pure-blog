@@ -25,6 +25,7 @@ export default function calloutsPlugin() {
     visit(tree, 'heading', (node) => {
       head.push({
         level: node.depth,
+        id: slugs.slug(toString(node)), //slugs.slug(toString(node)),
         title: toString(node) //slugs.slug(toString(node)),
       });
     });
@@ -39,7 +40,7 @@ export default function calloutsPlugin() {
         let array = []
         for(let i = 0; i < head.length; i++){
           const v = head[i]
-          array.push(`<li><a title="${v.title}" href="#${v.title}" style="overflow-x: hidden;white-space: nowrap;text-overflow: ellipsis;margin-left:${(v.level - 1) * 15}px"># ${v.title}</a></li>`)
+          array.push(`<li><a title="${v.title}" href="#${v.id}" style="overflow-x: hidden;white-space: nowrap;text-overflow: ellipsis;margin-left:${(v.level - 1) * 15}px"># ${v.title}</a></li>`)
         }
         node.value = `<ul class="toc">
           ${array.join("")}
