@@ -85,7 +85,6 @@ export function single(post: MarkdownInstance<any>): Post {
     .replace(/\.(md|mdx)$/g, '');
   let url = post.url;
   let filePath = '/src/pages' + post.file.replace(articleRoute, '')
-  console.log(post.file, articleRoute, path.sep)
   if (!isRoute) {
     slug = post.file
       .replace(articleDir, '')
