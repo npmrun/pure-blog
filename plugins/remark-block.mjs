@@ -25,7 +25,7 @@ export default function calloutsPlugin() {
     visit(tree, 'heading', (node) => {
       head.push({
         level: node.depth,
-        title: slugs.slug(toString(node)),
+        title: toString(node) //slugs.slug(toString(node)),
       });
     });
     file.data.astro.frontmatter._rawString = file.value;
