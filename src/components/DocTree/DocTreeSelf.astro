@@ -18,7 +18,14 @@ export interface Props {
 const { list } = Astro.props as Props
 
 function isActive(url: string){
-  return decodeURIComponent(Astro.url.pathname.replace(/\/$/, '')).startsWith(url);
+  let pathArr = decodeURIComponent(Astro.url.pathname).slice(1).replace(/\/$/, '').split("/")
+  let urlArr = url.slice(1).split("/")
+  for (let i = 0; i < urlArr.length; i++) {
+    const one = urlArr[i];
+    if(one !== pathArr[i]) return false
+  }
+  return true
+//   return decodeURIComponent(Astro.url.pathname).replace(/\/$/, '').startsWith(url);
 }
 
 const showList = list.sort((a, b) => {
@@ -31,10 +38,11 @@ const showList = list.sort((a, b) => {
 
 {showList.map(v=>{
     const url = v.path
-    return <details open={isActive(v.active)}>
-      <summary class:list={[isActive(v.active)?'active':'']}>
-        {!v.data && <><span title={v.name} class:list={["tree-item"]}>{v.name}</span><a target="_blank" href={githubNewURL+url} class="op">新建</a></>}
-        {!!v.data && <><a rel={isActive(v.active)?"":"prefetch"} href={v.data.url} title={v.name} class:list={["tree-item tree-md-file"]}>{v.name}</a><a target="_blank" href={githubURL + v.filePath} class="op">编辑</a></>}
+    return <details  open={isActive(v.active)}>
+        <summary>
+            
+        {!v.data && <><span title={v.name} class:list={["tree-item", !!v.data && isActive(v.active)?'active':'']}>{v.name}</span><a target="_blank" href={githubNewURL+url} class="op">新建</a></>}
+        {!!v.data && <><a rel={isActive(v.active)?"":"prefetch"} href={v.data.url} title={v.name} class:list={["tree-item tree-md-file", !!v.data && isActive(v.active)?'active':'']}>{v.name}</a><a target="_blank" href={githubURL + v.filePath} class="op">编辑</a></>}
       </summary>
       {Array.isArray(v.children) && <Astro.self list={v.children} />}
     </details>
