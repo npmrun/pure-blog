@@ -106,9 +106,10 @@ summary:hover .op{
     overflow: hidden;
     display: inline-flex;
     align-items: center;
-    height: 30px;
-    font-size: 15px;
-    line-height: 22px;
+    // 无需控制
+    // height: 30px;
+    // font-size: 15px;
+    // line-height: 22px;
     color: rgba(0, 0, 0, 0.85);
     padding-left: 400px;
     margin-left: -400px;
@@ -128,13 +129,13 @@ summary:hover .op{
 .tree-item::after{
     content: '';
     position: absolute;
-    left: 10px;
+    left: 0;
     right: 0;
     height: 28px;
     // background: #1abc9c1a;
     // border-radius: 2px;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    // border-top-left-radius: 4px;
+    // border-bottom-left-radius: 4px;
     z-index: -1;
     // opacity: 0;
     transition: .2s;
@@ -146,6 +147,10 @@ summary:hover .op{
     background: #1abc9c48;
     border-right: 4px solid #1abc9c;
 }
+// summary .active{
+//     color: rgb(142, 50, 220) !important;
+// }
+
 .tree-item::before{
     content: '';
     width: 20px;

@@ -27,15 +27,20 @@ function initColor() {
                     // @ts-ignore
                     headElement[i].style.color = "";
                 }
-                // @ts-ignore
-                headElement[i].parentElement.style.backgroundColor = "";
+                if(headElement[i].parentElement.classList.contains("active")){
+                    headElement[i].parentElement.classList.remove('active')
+                }
             }
         });
         if(activeIndex!=-1){
             // @ts-ignore
             headElement[activeIndex].style.color = "#8e32dc";
+            if(!headElement[activeIndex].parentElement.classList.contains("active")){
+                headElement[activeIndex].parentElement.classList.add('active')
+            }
             // @ts-ignore
-            headElement[activeIndex].parentElement.style.backgroundColor = "#1abc9c1a";
+            // headElement[activeIndex].parentElement.style.backgroundColor = "#1abc9c48";
+            // headElement[activeIndex].parentElement.style.borderLeft = "4px solid #1abc9c";
         }
     }
 }

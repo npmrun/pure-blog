@@ -32,6 +32,7 @@ const { head } = Astro.props as Props
 																</>
                             )
 		}
+        {!head.length && <div style="margin: 0 20px;">无</div>}
 		</ul>
 
     <style lang="scss">
@@ -45,6 +46,19 @@ const { head } = Astro.props as Props
 				}
                 li{
                     padding: 0 1em;
+                }
+                .active{
+                    background-color: #1abc9c48;
+                    position: relative;
+                    &::before{
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        bottom: 0;
+                        background-color: #1abc9c;
+                        width: 4px;
+                    }
                 }
 			}
 		</style>
