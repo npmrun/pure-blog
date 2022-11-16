@@ -18,6 +18,10 @@ heroImage: ""             <!-- 文章头图 -->
 
 > 最好不要取有特殊字符的标题
 
+## 开发注意
+
+不要在`.astro`文件中使用 `<style></style>` 这种作用域样式，可以在上面加上`is:global`变成全局样式。否则的话会生成`:where`选择器，导致低版本浏览器不兼容而导致样式错乱
+
 ## 部署
 [![](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/npmrun/pure-blog)
 

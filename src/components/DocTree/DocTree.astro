@@ -38,6 +38,11 @@ export interface Props {
     }
 }
 
+/*去掉前面默认的小黑三角*/
+.tree details summary::-webkit-details-marker{
+    display:none; 
+}
+
 .tree summary{
     outline: 0;
     padding-left: 20px;
