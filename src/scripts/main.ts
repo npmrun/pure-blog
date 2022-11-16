@@ -15,26 +15,28 @@ const offset = 10
 let activeIndex = 0;
 function initColor() {
     const headElement = document.querySelectorAll(allHeadSelector);
-    [...(document.querySelectorAll(allTitleSelector) as unknown as HTMLDivElement[])].forEach((el, i) => {
-        if (headElement[i]) {
-            const top = el.getBoundingClientRect().top;
-            if (top < offset) {
-                activeIndex = i
+    if(!!headElement.length){
+        [...(document.querySelectorAll(allTitleSelector) as unknown as HTMLDivElement[])].forEach((el, i) => {
+            if (headElement[i]) {
+                const top = el.getBoundingClientRect().top;
+                if (top < offset) {
+                    activeIndex = i
+                    // @ts-ignore
+                    headElement[i].style.color = "#8e32dc";
+                } else {
+                    // @ts-ignore
+                    headElement[i].style.color = "";
+                }
                 // @ts-ignore
-                headElement[i].style.color = "#8e32dc";
-            } else {
-                // @ts-ignore
-                headElement[i].style.color = "";
+                headElement[i].parentElement.style.backgroundColor = "";
             }
+        });
+        if(activeIndex!=-1){
             // @ts-ignore
-            headElement[i].parentElement.style.backgroundColor = "";
+            headElement[activeIndex].style.color = "#8e32dc";
+            // @ts-ignore
+            headElement[activeIndex].parentElement.style.backgroundColor = "#1abc9c1a";
         }
-    });
-    if(activeIndex!=-1){
-        // @ts-ignore
-        headElement[activeIndex].style.color = "#8e32dc";
-        // @ts-ignore
-        headElement[activeIndex].parentElement.style.backgroundColor = "#1abc9c1a";
     }
 }
 initColor();
