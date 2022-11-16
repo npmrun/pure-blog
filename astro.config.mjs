@@ -6,6 +6,7 @@ import remarkBlock from './plugins/remark-block.mjs';
 import Directive from 'remark-directive';
 import robotsTxt from "astro-robots-txt";
 import sitemap from "@astrojs/sitemap";
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,6 +43,15 @@ export default defineConfig({
         '#': path.resolve('./typings'),
       },
     },
-    plugins: [],
+    plugins: [
+        viteStaticCopy({
+            targets: [
+              {
+                src: 'article_static/**',
+                dest: ''
+              }
+            ]
+          })
+    ],
   },
 });
