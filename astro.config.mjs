@@ -36,6 +36,7 @@ export default defineConfig({
     },
     resolve: {
       alias: {
+        '@pure': path.resolve('../pure'),
         '@root': path.resolve('./'),
         '@blog': path.resolve('./src'),
         '#': path.resolve('./typings'),

@@ -55,7 +55,7 @@ function co(data: any, cb: any){
  * 获取所有的文章
  */
 export async function getPosts() {
-  const obj = await import.meta.glob('@root/article/**/*.{md,mdx}', {
+  const obj = await import.meta.glob('@blog/article/**/*.{md,mdx}', {
     eager: true,
   });
   return Object.values(obj) as MarkdownInstance<any>[];
@@ -65,7 +65,7 @@ export async function getPosts() {
  * 获取文件树
  */
 export async function publishedTree() {
-  const obj = await import.meta.glob('@root/article/**/*.{md,mdx}', {
+  const obj = await import.meta.glob('@pure/article/**/*.{md,mdx}', {
     eager: true,
   });
   return co(obj, function (post){

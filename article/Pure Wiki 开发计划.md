@@ -1,6 +1,5 @@
 ---
 title: Pure Wiki 主题
-top: true
 pubDate: 2022/11/15 16:05:35
 updatedDate: 2022/11/15 16:05:56
 ---
