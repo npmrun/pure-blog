@@ -1,0 +1,112 @@
+---
+import Page from "@blog/layouts/Page.astro";
+import { praseDemo } from "@blog/utils/demo";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+const demoes = praseDemo();
+
+const keys = Object.keys(demoes);
+---
+
+<Page title={SITE_TITLE + "-文章"} description={SITE_DESCRIPTION} hideSide>
+    <div class="demoes" style="position: relative;display: flex;margin: 25px;">
+        <ul
+            style="top: 0;whitespace: nowrap;text-align: right;margin-right: 15px;position: static;margin-bottom: 8px;max-height: 300px;overflow: auto;"
+        >
+            {
+                keys &&
+                    keys.map((v, i) => (
+                        <>
+                            <li style="color: #9ca3af;font-size: 14px;margin: 8px 0; cursor: pointer">
+                                <label for={`collapsible${i}`} class="label">
+                                    <span>{v}</span>
+                                </label>
+                                <input
+                                    id={`collapsible${i}`}
+                                    style="display: none;"
+                                    class="hidden toggle"
+                                    checked
+                                    type="checkbox"
+                                />
+                                <ul style="color: #000;font-size: 16px;" class="demo">
+                                    {demoes[v].map((v) => (
+                                        <li
+                                            data-route={v.route}
+                                            class="demo"
+                                            title={v.desc}
+                                        >
+                                            {v.title}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+                        </>
+                    ))
+            }
+            <style lang="scss">
+                @include media-pc(sm){
+                    .demoes{
+                        display: block !important;
+                        margin: 12px !important;
+                        ul{
+                            text-align: left !important;
+                        }
+                        ul+div{
+                            width: 100% !important;
+                        }
+                    }
+                }
+                .label {
+                    cursor: pointer;
+                    user-select: none;
+                }
+                .toggle + .demo {
+                    display: none;
+                }
+                .toggle:checked + .demo {
+                    display: block;
+                }
+            </style>
+        </ul>
+        <div style="margin-bottom: 50px; height: 500px;position:relative;flex: 1;width:0;">
+            <iframe
+                id="iframeDemo"
+                style="margin-bottom: 50px;width: 100%;"
+                height="500px"
+                frameborder="0"
+            >
+            </iframe>
+            <div
+                class="loading"
+                style="background-color: #00000017;color:white;display: flex;align-items: center;justify-content: center;position:absolute;inset:0;"
+            >
+                暂无展示
+            </div>
+        </div>
+    </div>
+</Page>
+<script lang="ts">
+    const iframeDemo = document.getElementById("iframeDemo");
+    const liEl = document.querySelectorAll(".demoes .demo");
+    const loadingEl = document.querySelector(".demoes .loading");
+    liEl.forEach((li) => {
+        li.addEventListener("click", (evt) => {
+            const route = evt.target.dataset.route;
+            if (route) {
+                iframeDemo.src = route;
+                loadingEl.style.display = "flex";
+                loadingEl.innerHTML = "加载中...";
+                if (iframeDemo.attachEvent) {
+                    // IE
+                    iframeDemo.attachEvent("onload", function () {
+                        loadingEl.style.display = "none";
+                    });
+                } else {
+                    // 非IE
+                    iframeDemo.onload = function () {
+                        loadingEl.style.display = "none";
+                    };
+                }
+            }
+        });
+    });
+</script>
