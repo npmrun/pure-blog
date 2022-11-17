@@ -9,7 +9,7 @@
     "isolatedModules": false,
     "downlevelIteration": true,
     "paths": {
-      "@pure/*": ["../pure/*"],
+      "@article/*": ["../../article/*"],
       "@root/*": ["./*"],
       "@blog/*": ["src/*"],
       "#/*": ["typings/*"]

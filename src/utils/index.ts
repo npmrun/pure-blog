@@ -55,9 +55,17 @@ function co(data: any, cb: any){
  * 获取所有的文章
  */
 export async function getPosts() {
-  const obj = await import.meta.glob('@blog/article/**/*.{md,mdx}', {
+  const obj = await import.meta.glob('@article/**/*.{md,mdx}', {
     eager: true,
   });
+  let array = Object.keys(obj);
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    let old = obj[element]
+    delete obj[element]
+    obj[element.replace('../..', '')] = old
+  }
+  console.log(Object.keys(obj));
   return Object.values(obj) as MarkdownInstance<any>[];
 }
 
@@ -65,9 +73,17 @@ export async function getPosts() {
  * 获取文件树
  */
 export async function publishedTree() {
-  const obj = await import.meta.glob('@pure/article/**/*.{md,mdx}', {
+  const obj = await import.meta.glob('@article/**/*.{md,mdx}', {
     eager: true,
   });
+  let array = Object.keys(obj);
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    let old = obj[element]
+    delete obj[element]
+    obj[element.replace('../..', '')] = old
+  }
+  console.log(Object.keys(obj));
   return co(obj, function (post){
     return single(post)
   })

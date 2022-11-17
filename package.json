@@ -22,7 +22,8 @@
     "prism-theme-vars": "^0.2.4",
     "remark-directive": "^2.0.1",
     "sass": "^1.56.1",
-    "vite-plugin-static-copy": "^0.12.0"
+    "vite-plugin-static-copy": "^0.12.0",
+    "vite-plugin-watcher": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.9"
