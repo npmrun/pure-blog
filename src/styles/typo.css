@@ -91,13 +91,13 @@ h6 {
 
 /* 在文章中，应该还原 ul 和 ol 的样式 */
 .typo ul {
-  margin-left: 1.8em;
+  margin-left: 2.35em;
   list-style: disc;
 }
 
 .typo ol {
   list-style: decimal;
-  margin-left: 1.8em;
+  margin-left: 2.2em;
 }
 
 .typo li ul,
