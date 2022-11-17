@@ -225,3 +225,8 @@ caption {
   border: 0;
   list-style-type: none;
 }
+
+.typo .mermaid{
+    display: flex;
+    justify-content: center;
+}

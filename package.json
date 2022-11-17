@@ -19,8 +19,11 @@
     "astro-robots-txt": "^0.3.10",
     "github-slugger": "^2.0.0",
     "hast-util-to-string": "^2.0.0",
+    "mermaid": "^9.2.2",
     "prism-theme-vars": "^0.2.4",
+    "rehype-mathjax": "^4.0.2",
     "remark-directive": "^2.0.1",
+    "remark-math": "^5.1.1",
     "sass": "^1.56.1",
     "viewerjs": "^1.11.1"
   },

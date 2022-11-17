@@ -1,4 +1,14 @@
 import View from "viewerjs";
+import mermaid from "mermaid"
+
+mermaid.initialize({
+    theme: 'neutral',
+    logLevel: 3,
+    securityLevel: 'loose',
+    flowchart: { curve: 'basis' },
+    gantt: { axisFormat: '%m/%d/%Y' },
+    sequence: { actorMargin: 50 },
+});
 
 // 图片查看器
 const gallery = new View(document.querySelector(".article"));

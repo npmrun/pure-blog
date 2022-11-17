@@ -3,9 +3,13 @@ import { defineConfig } from 'astro/config';
 import prefetch from '@astrojs/prefetch';
 import path from 'path';
 import remarkBlock from './plugins/remark-block.mjs';
+import remarkFlow from './plugins/remark-flow.mjs';
 import Directive from 'remark-directive';
 import robotsTxt from "astro-robots-txt";
 import sitemap from "@astrojs/sitemap";
+
+import remarkMath from 'remark-math'
+import rehypeMathjax from 'rehype-mathjax'
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,7 +17,8 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: 'prism',
     extendDefaultPlugins: true,
-    remarkPlugins: [Directive, [remarkBlock, {}]],
+    remarkPlugins: [Directive, [remarkBlock, {}], remarkMath, remarkFlow],
+    rehypePlugins: [rehypeMathjax]
   },
   integrations: [
     prefetch({
