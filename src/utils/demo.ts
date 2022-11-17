@@ -7,6 +7,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 function getHtml() {
+    // (async () => {
+    //     console.log(
+    //         await import.meta.glob("@root/public/demo/**/*.html", {
+    //             eager: true,
+    //             as: "raw",
+    //         })
+    //     );
+    // })();
     return glob.sync("**/*.html", {
         cwd: path.resolve(process.cwd(), "./public/demo/"),
     });

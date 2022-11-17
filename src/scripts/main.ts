@@ -1,3 +1,8 @@
+import View from "viewerjs";
+
+// 图片查看器
+const gallery = new View(document.querySelector(".article"));
+
 // a标签新页面打开
 const links = document.links;
 for (let i = 0, linksLength = links.length; i < linksLength; i++) {
