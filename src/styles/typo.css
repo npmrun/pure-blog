@@ -91,13 +91,13 @@ h6 {
 
 /* 在文章中，应该还原 ul 和 ol 的样式 */
 .typo ul {
-  margin-left: 1.3em;
+  margin-left: 1.8em;
   list-style: disc;
 }
 
 .typo ol {
   list-style: decimal;
-  margin-left: 1.2em;
+  margin-left: 1.8em;
 }
 
 .typo li ul,
@@ -179,7 +179,9 @@ h6 {
   width: .9em;
   height:.9em;
 }
-
+.typo .contains-task-list{
+  margin-left: 1.3em;
+}
 .typo .contains-task-list:dir(rtl) .task-list-item input[type="checkbox"] {
   margin: 0 -1.6em .25em .2em;
 }
