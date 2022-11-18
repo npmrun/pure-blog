@@ -45,12 +45,16 @@ updatedDate: 2022/11/15 16:05:56
 6. 文章提供了直接在github编辑功能，自行配置即可
 7. 增加`mermaid`渲染流程图时序图（暂时提供两个）
 8. 增加`mathjax`渲染公式
-9. 提供`Demo`命令
+9. 提供`demo`命令和`democ`命令  
+    `demo`为收缩框默认打开  
+    `democ`为收缩框默认关闭
     ```
     ::demo[流程图Demo]{url=/demo/flowchart.html}
+    ::democ[流程图Demo]{url=/demo/flowchart.html}
     ```
     目前版本能够展示url的网页,效果如下：
     ::demo[流程图Demo]{url=/demo/flowchart.html}
+    ::democ[时序图]{url=/demo/sequence-diagrams.html}
 
 
 ## 截图欣赏

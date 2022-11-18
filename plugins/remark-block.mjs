@@ -106,7 +106,7 @@ export default function calloutsPlugin() {
       }
     });
     visit(tree, (node) => {
-        if (node.type === 'leafDirective' && node.name === 'demo') {
+        if (node.type === 'leafDirective' && (node.name === 'demo' || node.name === 'democ')) {
             const data = node.data || (node.data = {});
             const attributes = node.attributes || {};
             const children = node.children || [];
@@ -114,11 +114,10 @@ export default function calloutsPlugin() {
 
             node.type = 'leafDirective'
             node.__handled = true
-            node.data = {
-                hName: 'details',
-                hProperties: {
-                    open: "true"
-                },
+            data.hName = 'details'
+            data.hProperties = { style:'margin-bottom: 1.2em;' }
+            if(node.name === 'demo'){
+                data.hProperties.open = 'true'
             }
             node.children = [
                 {
@@ -162,7 +161,7 @@ export default function calloutsPlugin() {
                       hProperties: {
                         id: attributes.id ?? '',
                         class: attributes.class ?? '',
-                        style: 'margin-bottom: 50px;width: 100%;border: 1px solid #e9e9e9;',
+                        style: 'width: 100%;border: 1px solid #e9e9e9;',
                         height: '300px',
                         frameborder: '0',
                         src: url
