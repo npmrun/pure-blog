@@ -11,11 +11,11 @@ pubDate: 2022/11/18 17:05:50
 
 -  webkit渲染过程 
 
-![]([https://ask.qcloudimg.com/http-save/yehe-8220998/1ydsk1wex0.png?imageView2/2/w/1620](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35be426eb4f94ec0a82e20b34030ecde~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp))
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35be426eb4f94ec0a82e20b34030ecde~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 - Gecko渲染过程 
 
-![]([https://ask.qcloudimg.com/http-save/yehe-8220998/z75zory4u5.png?imageView2/2/w/1620](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8c38686625c14bd3b0f54cce817029a3~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp))
+![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8c38686625c14bd3b0f54cce817029a3~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 从上面两个流程图我们可以看出来，浏览器渲染的流程如下：
 
