@@ -89,6 +89,7 @@ pubDate: 2022/11/18 17:05:50
 </html>
 ```
 ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/87519598e6484ec38db8daed23f586c9~tplv-k3u1fbpfcp-zoom-1.image)
+
 我们可以看到，只有在css加载完成后，才会触发DOMContentLoaded事件。因此，我们可以得出结论：
 
 - 如果页面中同时存在css和js，并且存在js在css后面，则DOMContentLoaded事件会在css加载完后才执行。
