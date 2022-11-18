@@ -3,7 +3,7 @@ import mermaid from "mermaid"
 
 mermaid.initialize({
     theme: 'neutral',
-    logLevel: 3,
+    // logLevel: 3,
     securityLevel: 'loose',
     flowchart: { curve: 'basis' },
     gantt: { axisFormat: '%m/%d/%Y' },

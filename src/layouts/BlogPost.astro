@@ -10,7 +10,7 @@ export interface extendProps {
 }
 export type Props = Partial<PostProps> & extendProps
 
-let { title, description, pubTimestamp, updatedTimestamp, heroImage, _images, filePath, _head, hideSide= false } = getPost(Astro.props as Props) as Props
+let { title, description, pubTimestamp, updatedTimestamp, heroImage, _images, filePath, _head, hideSide= false, mode} = getPost(Astro.props as Props) as Props
 
 if(showArticleHeroImage && _images && !!_images.length){
 	heroImage = _images[0].url
@@ -19,7 +19,7 @@ if(showArticleHeroImage && _images && !!_images.length){
 ---
 <Base title={title} description={description} hideSide={hideSide}>
 		{heroImage && <img class="hero-image" src={heroImage} alt="" />}
-		<article class="typo article">
+		<article class:list={["typo article",mode]}>
 				<h1 class="title">{title}</h1>
 				{!!pubTimestamp && <div style="font-size: 0.875em;"><time>
                     创建于 {new Date(pubTimestamp).toLocaleDateString('zh-cn', {
@@ -45,7 +45,9 @@ if(showArticleHeroImage && _images && !!_images.length){
 				)}
 				{filePath && <a href={githubURL+"/article"+filePath} target="_blank" style="margin: 6px 0;display: inline-block;">在Github编辑</a>}
 				<hr />
-				<slot />
+				<div class="article__content">
+                    <slot />
+                </div>
 		</article>
 		<HeadTree slot="side" head={_head}></HeadTree>
 </Base>
