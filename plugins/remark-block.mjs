@@ -106,6 +106,73 @@ export default function calloutsPlugin() {
       }
     });
     visit(tree, (node) => {
+        if (node.type === 'leafDirective' && node.name === 'demo') {
+            const data = node.data || (node.data = {});
+            const attributes = node.attributes || {};
+            const children = node.children || [];
+            const url = attributes.url
+
+            node.type = 'leafDirective'
+            node.__handled = true
+            node.data = {
+                hName: 'details',
+                hProperties: {
+                    open: "true"
+                },
+            }
+            node.children = [
+                {
+                    type: 'leafDirective',
+                    __handled: true,
+                    data: {
+                      hName: 'summary',
+                      hProperties: {
+                        style: "background: #f3f3f3;padding: .3em .6em;cursor: pointer;user-select: none;"
+                      },
+                    },
+                    children: [
+                        {
+                            type: 'leafDirective',
+                            __handled: true,
+                            data: {
+                              hName: 'abbr',
+                              hProperties: {
+                                title: url
+                              },
+                            },
+                            children: [
+                                {
+                                    type: 'text',
+                                    value: '地址'
+                                }
+                            ]
+                        },
+                        {
+                            type: 'text',
+                            value: ' / '
+                        },
+                        ...children
+                    ]
+                },
+                {
+                    type: 'leafDirective',
+                    __handled: true,
+                    data: {
+                      hName: 'iframe',
+                      hProperties: {
+                        id: attributes.id ?? '',
+                        class: attributes.class ?? '',
+                        style: 'margin-bottom: 50px;width: 100%;border: 1px solid #e9e9e9;',
+                        height: '300px',
+                        frameborder: '0',
+                        src: url
+                      },
+                    }
+                },
+            ]
+        }
+    })
+    visit(tree, (node) => {
       if (
         node.type === 'textDirective' ||
         node.type === 'leafDirective' ||
