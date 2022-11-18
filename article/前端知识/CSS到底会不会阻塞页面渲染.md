@@ -11,11 +11,11 @@ pubDate: 2022/11/18 17:05:50
 
 -  webkit渲染过程 
 
-![](https://ask.qcloudimg.com/http-save/yehe-8220998/1ydsk1wex0.png?imageView2/2/w/1620)
+![]([https://ask.qcloudimg.com/http-save/yehe-8220998/1ydsk1wex0.png?imageView2/2/w/1620](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35be426eb4f94ec0a82e20b34030ecde~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp))
 
 - Gecko渲染过程 
 
-![](https://ask.qcloudimg.com/http-save/yehe-8220998/z75zory4u5.png?imageView2/2/w/1620)
+![]([https://ask.qcloudimg.com/http-save/yehe-8220998/z75zory4u5.png?imageView2/2/w/1620](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8c38686625c14bd3b0f54cce817029a3~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp))
 
 从上面两个流程图我们可以看出来，浏览器渲染的流程如下：
 
@@ -41,26 +41,54 @@ pubDate: 2022/11/18 17:05:50
 我们先对第一种情况做测试：
 
 ```
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ <title>css阻塞</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <script>
  document.addEventListener('DOMContentLoaded', function() {
  console.log('DOMContentLoaded');
- })![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d30219afd9e84bc99875991b7d284435~tplv-k3u1fbpfcp-zoom-1.image)
-![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/87519598e6484ec38db8daed23f586c9~tplv-k3u1fbpfcp-zoom-1.image)
+ })
+ </script>
+ <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">
+ </head>
+ <body>
+ </body>
+</html>
 ```
 
-实验结果如下图： 从动图我们可以看出来，css还未加载完，就已经触发了DOMContentLoaded事件了。因为css后面没有任何js代码。
+实验结果如下图： 
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d30219afd9e84bc99875991b7d284435~tplv-k3u1fbpfcp-zoom-1.image)
+
+从动图我们可以看出来，css还未加载完，就已经触发了DOMContentLoaded事件了。因为css后面没有任何js代码。
 
 接下来我们对第二种情况做测试，很简单，就在css后面加一行代码就行了
 
 ```
-css阻塞
- 
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ <title>css阻塞</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <script>
  document.addEventListener('DOMContentLoaded', function() {
  console.log('DOMContentLoaded');
  })
- 
+ </script>
+ <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">
+ <script>
  console.log('到我了没');
+ </script>
+ </head>
+ <body>
+ </body>
+</html>
 ```
-
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/87519598e6484ec38db8daed23f586c9~tplv-k3u1fbpfcp-zoom-1.image)
 我们可以看到，只有在css加载完成后，才会触发DOMContentLoaded事件。因此，我们可以得出结论：
 
 - 如果页面中同时存在css和js，并且存在js在css后面，则DOMContentLoaded事件会在css加载完后才执行。
