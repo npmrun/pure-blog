@@ -42,6 +42,18 @@ html, body {
   }
 }
 
+// 顶部进度条
+.reading{
+    position: relative;
+    &::after{
+        content: attr(data-rate);
+        position: absolute;
+        right: 0;
+        font-size: .75em;
+        color: #1abc9c;
+    }
+}
+
 .layout{
   display: flex;
 
