@@ -11,31 +11,36 @@ mermaid.initialize({
 });
 
 //===== 顶部进度条 ===== Start
-const topSlider = document.createElement("div")
-topSlider.style.position = "fixed"
-topSlider.style.top = "0"
-topSlider.style.right = "0"
-topSlider.style.left = "0"
-topSlider.style.height = "2px"
-topSlider.style.backgroundColor = "#1abc9c"
-document.body.append(topSlider)
-const scrollHeight = document.body.scrollHeight - document.body.clientHeight
-function initW() {
-    const rate = document.documentElement.scrollTop/scrollHeight * 100
-    topSlider.style.width = rate + "%"
-    topSlider.setAttribute('data-rate', ~~rate + '%')
-    if(rate >= 10){
-        topSlider.classList.add("reading")
-    }else{
-        topSlider.classList.remove("reading")
+if(location.pathname.startsWith("/post")){
+    const topSlider = document.createElement("div")
+    topSlider.style.position = "fixed"
+    topSlider.style.top = "0"
+    topSlider.style.right = "0"
+    topSlider.style.left = "0"
+    topSlider.style.height = "2px"
+    topSlider.style.backgroundColor = "#1abc9c"
+    document.body.append(topSlider)
+    const scrollHeight = document.body.scrollHeight - document.body.clientHeight
+    function initW() {
+        const rate = document.documentElement.scrollTop/scrollHeight * 100
+        topSlider.style.width = rate + "%"
+        topSlider.setAttribute('data-rate', ~~rate + '%')
+        if(rate >= 10){
+            topSlider.classList.add("reading")
+        }else{
+            topSlider.classList.remove("reading")
+        }
     }
+    initW()
+    window.addEventListener("scroll", initW);
 }
-initW()
-window.addEventListener("scroll", initW);
 //===== 顶部进度条 =====  End
 
 // 图片查看器
-const gallery = new View(document.querySelector(".article"));
+const articleEL = document.querySelector(".article")
+if(articleEL){
+    const gallery = new View(document.querySelector(".article"));
+}
 
 // a标签新页面打开
 const links = document.links;
