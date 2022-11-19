@@ -20,8 +20,8 @@ if(location.pathname.startsWith("/post")){
     topSlider.style.height = "2px"
     topSlider.style.backgroundColor = "#1abc9c"
     document.body.append(topSlider)
-    const scrollHeight = document.body.scrollHeight - document.body.clientHeight
     function initW() {
+        const scrollHeight = document.body.scrollHeight - document.body.clientHeight
         const rate = document.documentElement.scrollTop/scrollHeight * 100
         topSlider.style.width = rate + "%"
         topSlider.setAttribute('data-rate', ~~rate + '%')
@@ -150,4 +150,5 @@ function init(){
     topEl.style.pointerEvents = "none"
   }
 }
+init()
 window.addEventListener("scroll", init);
