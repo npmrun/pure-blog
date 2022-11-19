@@ -48,7 +48,8 @@ html, body {
     &::after{
         content: attr(data-rate);
         position: absolute;
-        right: 0;
+        right: calc(100% + 4px);
+        bottom: 0;
         font-size: .75em;
         color: #1abc9c;
     }

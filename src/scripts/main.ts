@@ -15,15 +15,15 @@ if(location.pathname.startsWith("/post")){
     const topSlider = document.createElement("div")
     topSlider.style.position = "fixed"
     topSlider.style.top = "0"
+    topSlider.style.bottom = "0"
     topSlider.style.right = "0"
-    topSlider.style.left = "0"
-    topSlider.style.height = "2px"
+    topSlider.style.width = "4px"
     topSlider.style.backgroundColor = "#1abc9c"
     document.body.append(topSlider)
     function initW() {
         const scrollHeight = document.body.scrollHeight - document.body.clientHeight
         const rate = document.documentElement.scrollTop/scrollHeight * 100
-        topSlider.style.width = rate + "%"
+        topSlider.style.height = rate + "%"
         topSlider.setAttribute('data-rate', ~~rate + '%')
         if(rate >= 10){
             topSlider.classList.add("reading")

@@ -6,11 +6,14 @@ export const isDev = MODE === 'development';
 export const isProd = MODE === 'production';
 
 export const SITE_LANG = "zh-cn"
-export const SITE_TITLE = '编程百科';
+export const SITE_TITLE = 'PureWiki';
 export const SITE_DESCRIPTION = '花径不曾缘客扫，蓬门今始为君开!';
 
 // If any images in article, then show the first on the top.
 export const showArticleHeroImage = false
+
+export const GithubAuthor = 'NPMRUN';
+export const GithubName = 'pure-blog';
 
 // 注意最后的main为当前所在分支
 export const githubURL = 'https://github.com/npmrun/pure-blog/edit/main'
