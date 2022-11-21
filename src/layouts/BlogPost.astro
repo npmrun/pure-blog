@@ -12,18 +12,18 @@ export type Props = Partial<PostProps> & extendProps
 
 let { title, description, pubTimestamp, updatedTimestamp, heroImage, _images, filePath, _head, hideSide= false, mode} = getPost(Astro.props as Props) as Props
 
-if(showArticleHeroImage && _images && !!_images.length){
-	heroImage = _images[0].url
-}
+// if(showArticleHeroImage && _images && !!_images.length){
+// 	heroImage = _images[0].url
+// }
 
 ---
 <Base title={title} description={description} hideSide={hideSide}>
 		{heroImage && <img class="hero-image" src={heroImage} alt="" />}
 		<article class:list={["typo article",mode]}>
-                {filePath && <div style="font-size: .875em;">{filePath.slice(1).replace(/\//g," > ")}</div>}
+                {filePath && <div style="font-size: .75em;color: #bdbdbd;">{filePath.slice(1).replace(/\//g," > ")}</div>}
 				<h1 class="title">{title}</h1>
 				<div style="line-height: 1.5;">
-                    {!!pubTimestamp && <div style="font-size: 0.875em;"><time>
+                    {!!pubTimestamp && <div style="font-size: 0.75em;color: #bdbdbd;"><time>
                         创建于 {new Date(pubTimestamp).toLocaleDateString('zh-cn', {
                             year: 'numeric',
                             month: 'short',
@@ -34,7 +34,7 @@ if(showArticleHeroImage && _images && !!_images.length){
                         })}
                     </time></div>}
                     {!!updatedTimestamp && (
-                        <div style="font-size: 0.875em;">
+                        <div style="font-size: 0.75em;color: #bdbdbd;">
                             上次修改于 <time>{new Date(updatedTimestamp).toLocaleDateString('zh-cn', {
                             year: 'numeric',
                             month: 'short',
@@ -52,5 +52,5 @@ if(showArticleHeroImage && _images && !!_images.length){
                     <slot />
                 </div>
 		</article>
-		<HeadTree slot="side" head={_head}></HeadTree>
+        <HeadTree slot="side" head={_head}></HeadTree>
 </Base>

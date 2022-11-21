@@ -10,7 +10,7 @@ export const SITE_TITLE = 'PureWiki';
 export const SITE_DESCRIPTION = '花径不曾缘客扫，蓬门今始为君开!';
 
 // If any images in article, then show the first on the top.
-export const showArticleHeroImage = false
+export const showArticleHeroImage = true
 
 export const GithubAuthor = 'NPMRUN';
 export const GithubName = 'pure-blog';

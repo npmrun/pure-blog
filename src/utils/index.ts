@@ -1,5 +1,5 @@
 import type { Post } from '#/post';
-import { isDev } from '@blog/config';
+import { isDev, showArticleHeroImage } from '@blog/config';
 import type { MarkdownInstance } from 'astro';
 import { articleDir, articleRoute } from '@blog/share';
 
@@ -120,9 +120,14 @@ export function single(post: MarkdownInstance<any>): Post {
   if(post.frontmatter.updatedDate){
     updatedTimestamp = new Date(post.frontmatter.updatedDate).valueOf()
   }
+  let heroImage = post.frontmatter.heroImage
+  if(showArticleHeroImage && !heroImage && post.frontmatter._images && !!post.frontmatter._images.length){
+	heroImage = post.frontmatter._images[0].url
+  }
 
   return {
     ...post.frontmatter,
+    heroImage,
     Content: post.Content,
     filePath: filePath,
     slug: slug,
@@ -150,15 +155,23 @@ export async function published(): Promise<Post[]> {
       return -1;
     }
   });
-  for (let i = 0; i < allPosts.length; i++) {
-    const post = allPosts[i];
-    if (post.top) {
-      const delOne = allPosts.splice(i, 1);
-      allPosts.unshift(delOne[0]);
-    }
-  }
+//   for (let i = 0; i < allPosts.length; i++) {
+//     const post = allPosts[i];
+//     if (post.top) {
+//       const delOne = allPosts.splice(i, 1);
+//       allPosts.unshift(delOne[0]);
+//     }
+//   }
   return allPosts;
 }
+
+/**
+ * 获取置顶文章
+ */
+ export async function getTopPublished(): Promise<Post[]> {
+    let allPosts = (await published()).filter( v => !!v.top )
+    return allPosts;
+  }
 
 /**
  * 获取Astro.props的文章数据，判断是不是解析过了

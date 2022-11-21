@@ -1,5 +1,9 @@
 ---
 title: PureWiki主题
+description: 一个简单的主题
+heroImage: https://w.wallhaven.cc/full/y8/wallhaven-y8622k.jpg
+heroPosition: top
+top: true
 pubDate: 2022/11/15 16:05:35
 updatedDate: 2022/11/15 16:05:56
 ---

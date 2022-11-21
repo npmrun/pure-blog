@@ -23,7 +23,7 @@ html, body {
   bottom: 40px;
   right: 40px;
   background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.24);
   padding: 6px;
   border-radius: 50%;
   cursor: pointer;
@@ -58,7 +58,7 @@ html, body {
 .layout{
   display: flex;
 
-  max-width: 1600px;
+  max-width: 1440px;
   margin: 0 auto;
 
   min-height: 100%;
@@ -130,8 +130,9 @@ html, body {
   @include media-pc(sm){
     padding: 1em 1.2em 1em;
   }
-  &.indent .article__content{
+  &.chinese .article__content{
     text-indent: 1.5em;
+    font-weight: 300;
     h1,h2,h3,h4,h5,h6,
     ol, ul, blockquote, details, summary, pre{
         text-indent: 0;
@@ -163,6 +164,7 @@ header{
 footer {
   padding: 25px;
   text-align: center;
+  font-weight: 300;
 }
 
 ::-webkit-scrollbar-track {

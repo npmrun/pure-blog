@@ -66,7 +66,7 @@ function initColor() {
                 if (top < offset) {
                     activeIndex = i
                     // @ts-ignore
-                    headElement[i].style.color = "#8e32dc";
+                    headElement[i].style.color = "#1abc9c";
                 } else {
                     // @ts-ignore
                     headElement[i].style.color = "";
@@ -142,7 +142,9 @@ topEl.addEventListener("click", (e)=>{
 })
 function init(){
   const top = document.documentElement.scrollTop;
-  if(top > 250){
+  const maxHeight = document.body.clientHeight + document.body.clientHeight / 2
+  
+  if(top > maxHeight){
     topEl.style.opacity = '1'
     topEl.style.pointerEvents = "auto"
   }else{

@@ -10,8 +10,20 @@ const slugs = new Slugger();
 
 export default function calloutsPlugin() {
   return (tree, file) => {
+    
+    slugs.reset();
 
+    const images = [];
     visit(tree, 'image', (node) => {
+        //===== 解析图片 ===== Start
+        const name = node.url.split('/').reverse()[0];
+        images.push({
+          name: name,
+          alt: node.alt,
+          url: node.url,
+        });
+        //===== 解析图片 =====  End
+
         const url = node.url;
         const alt = node.alt;
         node.type = "html"
@@ -28,17 +40,6 @@ export default function calloutsPlugin() {
         `
     });
 
-    slugs.reset();
-
-    const images = [];
-    visit(tree, 'image', (node) => {
-      const name = node.url.split('/').reverse()[0];
-      images.push({
-        name: name,
-        alt: node.alt,
-        url: node.url,
-      });
-    });
     const head = [];
     visit(tree, 'heading', (node) => {
       head.push({

@@ -39,16 +39,19 @@ const { head } = Astro.props as Props
 			ul{
                 margin-top: 1em;
 				.title{
-					height: 35px;
+                    height: 35px;
 					line-height: 35px;
 					font-weight: bold;
                     padding: 0 1em;
 				}
                 li{
                     padding: 0 1em;
+                    a {
+                        color: #19171199;
+                    }
                 }
                 .active{
-                    background-color: #1abc9c48;
+                    background-color: #1abc9c27;
                     position: relative;
                     &::before{
                         content: "";

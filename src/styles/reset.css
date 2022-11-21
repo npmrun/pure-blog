@@ -2,7 +2,7 @@
 
 /* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
 html {
-  color: #333;
+  color: #4c4e4d;
   background: #fff;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -98,7 +98,7 @@ button,
 input,
 select,
 textarea {
-  font: 300 1em/1.8 PingFang SC, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Lantinghei SC, Microsoft Yahei,
+  font: 400 1em/1.6 PingFang SC, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Lantinghei SC, Microsoft Yahei,
     Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
 }
 
@@ -223,10 +223,19 @@ a:hover {
 
 .typo a {
   border-bottom: none;
+  position: relative;
   /* border-bottom: 1px solid #1abc9c; */
 }
-
 .typo a:hover {
+    text-decoration: none;
+    color: #555;
+}
+.typo a:hover::before{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   border-bottom: 1px solid #555;
   /* border-bottom-color: #555; */
   color: #555;
