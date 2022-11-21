@@ -11,7 +11,7 @@ export const get = () => {
     stylesheet: true,
     customData: `<language>${SITE_LANG || 'en-us'}</language>`,
     site: import.meta.env.SITE,
-    items: posts.map((post) => ({
+    items: posts.slice(10).map((post) => ({
       link: post.url,
       title: post.title,
       pubDate: post.pubDate,
