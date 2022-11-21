@@ -183,6 +183,7 @@ export default function calloutsPlugin() {
                         style: 'width: 100%;border: 1px solid #e9e9e9;',
                         height: '300px',
                         frameborder: '0',
+                        allowfullscreen: "true",
                         src: url
                       },
                     }

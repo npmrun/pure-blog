@@ -59,6 +59,8 @@ updatedDate: 2022/11/15 16:05:56
     ::demo[流程图Demo]{url=/demo/flowchart.html}
     ::democ[时序图]{url=/demo/sequence-diagrams.html}
 
+    ::demo[BiliBili]{url="//player.bilibili.com/player.html?aid=690345969&bvid=BV1N24y117QE&cid=895902728&page=1"}
+
 
 ## 截图欣赏
 
