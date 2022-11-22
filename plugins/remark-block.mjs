@@ -52,6 +52,42 @@ export default function calloutsPlugin() {
     file.data.astro.frontmatter._images = images;
     file.data.astro.frontmatter._head = head;
 
+    visit(tree,"text", (node)=>{
+        const reg = /^@\((.*?)\)\((.*?)\)\((.*?)\)(.*?)\[(.*?)\]$/
+        // const reg = /@\((.*?)\)\((.*?)\)\((.*?)\)(.*?)\[(.*?)\]+/ //匹配多个
+        if(reg.test(node.value)){
+            const result = node.value.match(reg)
+            const [,title,desc,url,list,image] = result
+            const tags = []
+            console.log(title,desc,url,list,image);
+            if (list) {
+                const tagGenerate = list.matchAll(/\(\((.*?)\)\((.*?)\)\)+/g)
+                let g = tagGenerate.next();
+                while (!g.done) {
+                    const [,tag,url] = g.value
+                    tags.push([tag,url])
+                    g = tagGenerate.next()
+                }
+            }
+            const array = []
+            for(let i = 0; i < tags.length; i++){
+                const v = tags[i]
+                array.push(`<a href="${v[1]}" target="_blank" class="doc-card-tag" style="background:">${v[0]}</a>`)
+            }
+            node.type = "html";
+            node.__handled = true;
+            node.value = `<div title="${desc}" class="doc-card ">
+                    <a href="${url}" class="doc-card-a" target="_blank">
+                        <div class="doc-card-title">${title}</div>
+                        <div class="doc-card-describe">${desc}</div>
+                    </a>
+                    <div class="doc-card-bottom">
+                        ${array.join("")}
+                    </div>
+                </div>`
+        }
+    })
+
     visit(tree, (node) => {
       if(node.value === "[TOC]" && node.type === "text"){
         node.type = "html";
