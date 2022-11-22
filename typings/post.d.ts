@@ -20,7 +20,7 @@ export type PostProps = {
   Content: MarkdownInstance<any>['Content'] // 在路由中的md才会存在，是一个展示文档的组件
   postPicture: string
   toc: boolean // 是否开启悬浮标题
-  mode?: 'indent' // 首行段落是否缩进
+  mode?: 'chinese' // 首行段落是否缩进
   comment: boolean // 是否可以评论
   theme: 'github' | 'normal' // 是否可以评论
 
