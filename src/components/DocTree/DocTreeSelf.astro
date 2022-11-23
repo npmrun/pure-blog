@@ -38,7 +38,8 @@ const showList = list.sort((a, b) => {
 
 {showList.map(v=>{
     const url = v.path
-    return <details  open={isActive(v.active)}>
+    const vpath = !v.data?v.active:'' as any
+    return <details data-path={vpath || false} open={isActive(v.active)}>
         <summary>
             
         {!v.data && <><span title={v.name} class:list={["tree-item", !!v.data && isActive(v.active)?'active':'']}>{v.name}</span><a target="_blank" href={githubNewURL+url} class="op">新建</a></>}

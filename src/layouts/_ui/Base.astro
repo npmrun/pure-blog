@@ -23,7 +23,7 @@ let { title, description, hideSide } = Astro.props as Props
 <!DOCTYPE html>
 <html lang={ SITE_LANG }>
 	<head>
-		<BaseHead title={title} description={description} />
+        <BaseHead title={title} description={description} />
 	</head>
 
 	<body>
@@ -33,6 +33,8 @@ let { title, description, hideSide } = Astro.props as Props
           <Header title={title}/>
           <PostTop posts={topArticles}></PostTop>
           <DocTree list={articles}></DocTree>
+          <!-- 为了快速将元素设置 -->
+          <script is:inline src="/scripts/init.js"></script>
         </div>
       </div>
       <div class="right">
