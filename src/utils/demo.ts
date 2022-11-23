@@ -6,30 +6,23 @@ import glob from "fast-glob";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-function getHtml() {
-    // (async () => {
-    //     console.log(
-    //         await import.meta.glob("@root/public/demo/**/*.html", {
-    //             eager: true,
-    //             as: "raw",
-    //         })
-    //     );
-    // })();
-    return glob.sync("**/*.html", {
-        cwd: path.resolve(process.cwd(), "./public/demo/"),
-    });
+async function getAllHTML() {
+    const tree = await import.meta.glob("@root/public/demo/**/*.html", {
+        eager: true,
+        as: "raw",
+    })
+    return tree;
 }
 
-function praseDemo() {
-    const html = getHtml();
+async function praseDemo() {
+    const tree = await getAllHTML()
     const result = {};
-    html.forEach((element) => {
-        const route = "/demo/" + element;
-        let title = "未命名 | " + route;
-        let desc = "";
-        const p = path.resolve(process.cwd(), "./public/demo/", element);
-        if (fs.existsSync(p)) {
-            const content = fs.readFileSync(p, { encoding: "utf-8" });
+    for (const key in tree) {
+        if (Object.prototype.hasOwnProperty.call(tree, key)) {
+            const content = tree[key];
+            const route = key.replace(/\/public/, '')
+            let title = "未命名 | " + route;
+            let desc = "";
             const titleReg = /<title>(.*?)<\/title>/i.exec(content);
             if (titleReg && titleReg[1]) {
                 title = titleReg[1];
@@ -40,16 +33,16 @@ function praseDemo() {
             if (descReg && descReg[1]) {
                 desc = descReg[1];
             }
+            const dir = path.parse(route).dir.replace(/\/demo/, "Demo");
+            if (!result[dir]) result[dir] = [];
+            result[dir].push({
+                title,
+                desc,
+                dir,
+                route,
+            });
         }
-        const dir = path.parse(route).dir.replace(/\/demo/, "Demo");
-        if (!result[dir]) result[dir] = [];
-        result[dir].push({
-            title,
-            desc,
-            dir,
-            route,
-        });
-    });
+    }
     return result;
 }
 

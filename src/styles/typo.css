@@ -59,18 +59,6 @@ h6 {
   position: relative;
 }
 
-.typo h1:hover::before,
-.typo h2:hover::before,
-.typo h3:hover:before{
-    content: "#";
-    position: absolute;
-    right: calc(100% + 4px);
-    font-size: .8em;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #1abc9c;
-}
-
 .typo h1 {
   font-size: 2em;
 }
@@ -101,6 +89,10 @@ h6 {
 .typo ol {
   list-style: decimal;
   margin-left: 1.6em;
+}
+
+.typo li+li {
+    margin-top: .25em;
 }
 
 .typo li ul,

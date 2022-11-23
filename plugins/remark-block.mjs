@@ -5,6 +5,9 @@ import { visit } from 'unist-util-visit';
 import { h } from 'hastscript';
 import { toString } from 'hast-util-to-string';
 import Slugger from 'github-slugger';
+// import path from 'path';
+// import fs from 'fs';
+// import { normalizePath } from 'vite';
 
 const slugs = new Slugger();
 
@@ -48,6 +51,7 @@ export default function calloutsPlugin() {
         title: toString(node) //slugs.slug(toString(node)),
       });
     });
+    // file.data.astro.frontmatter.setup = "import TT from '@blog/components/Text.astro'";
     file.data.astro.frontmatter._rawString = file.value;
     file.data.astro.frontmatter._images = images;
     file.data.astro.frontmatter._head = head;
@@ -125,7 +129,80 @@ export default function calloutsPlugin() {
       }
     });
     visit(tree, (node) => {
-        if (node.type === 'leafDirective' && (node.name === 'demo' || node.name === 'democ')) {
+        // if (node.type === 'leafDirective' && node.name === 'demo') {
+        //     const cwd = process.cwd()
+        //     const data = node.data || (node.data = {});
+        //     const attributes = node.attributes || {};
+        //     if(attributes.path){
+        //         const curPath = normalizePath(path.join(cwd, attributes.path))
+        //         const code = fs.readFileSync(curPath, { encoding: "utf8", flag: 'r'})
+        //         node.__handled = true
+        //         data.hName = 'iframe'
+        //         data.hProperties = {
+        //             id: attributes.id ?? '',
+        //             class: attributes.class ?? '',
+        //             style: 'width: 100%;border: 1px solid #e9e9e9;',
+        //             height: '300px',
+        //             frameborder: '0',
+        //             allowfullscreen: "true",
+        //             srcdoc: code
+        //         }
+        //     }
+        // }
+        if (node.type === 'leafDirective' && node.name === 'demo') {
+            const data = node.data || (node.data = {});
+            const attributes = node.attributes || {};
+            if(attributes.path){
+                node.__handled = true
+                data.hName = 'iframe'
+                data.hProperties = {
+                    id: attributes.id ?? '',
+                    class: attributes.class ?? '',
+                    style: 'width: 100%;border: 1px solid #e9e9e9;',
+                    height: '300px',
+                    frameborder: '0',
+                    allowfullscreen: "true",
+                    src: attributes.path
+                }
+            }
+        }
+        if (node.type === 'containerDirective' && node.name === 'demo') {
+            const data = node.data || (node.data = {});
+            const attributes = node.attributes || {};
+            node.__handled = true
+            const str = node.children.reduce((a, b)=>(a+'\n'+b.value), "")
+            data.hName = 'iframe'
+            node.children = []
+            data.hProperties = {
+                id: attributes.id ?? '',
+                class: attributes.class ?? '',
+                style: 'width: 100%;border: 1px solid #e9e9e9;',
+                height: '300px',
+                frameborder: '0',
+                allowfullscreen: "true",
+                srcdoc: `<!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>__title</title>
+                    <style>
+                        *{
+                            font-family: PingFang SC, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Lantinghei SC, Microsoft Yahei,
+    Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+                        }
+                    </style>
+                </head>
+                <body>
+                    __content
+                </body>
+                </html>`.replace(/[\r\n]/g, '').replace('__title',attributes.title || '').replace('__content', str)
+            }
+        }
+    })
+    visit(tree, (node) => {
+        if (node.type === 'leafDirective' && (node.name === 'iframe' || node.name === 'iframec')) {
             const data = node.data || (node.data = {});
             const attributes = node.attributes || {};
             const children = node.children || [];
@@ -135,7 +212,7 @@ export default function calloutsPlugin() {
             node.__handled = true
             data.hName = 'details'
             data.hProperties = { style:'margin-bottom: 1.2em;' }
-            if(node.name === 'demo'){
+            if(node.name === 'iframe'){
                 data.hProperties.open = 'true'
             }
             node.children = [

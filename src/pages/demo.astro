@@ -2,7 +2,7 @@
 import Page from "@blog/layouts/Page.astro";
 import { praseDemo } from "@blog/utils/demo";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
-const demoes = praseDemo();
+const demoes = await praseDemo();
 
 const keys = Object.keys(demoes);
 ---
