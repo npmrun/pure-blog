@@ -4,6 +4,7 @@
 import { visit } from 'unist-util-visit';
 import { h } from 'hastscript';
 import { toString } from 'hast-util-to-string';
+import { runHighlighterWithAstro } from "@astrojs/prism/dist/highlighter";
 import Slugger from 'github-slugger';
 // import path from 'path';
 // import fs from 'fs';
@@ -180,6 +181,11 @@ export default function calloutsPlugin() {
                             }
                         }
                     },
+                    {
+                        type: "html",
+                        __handled: true,
+                        value: `<div style="background: #e9e9e9;padding: 0 1em;font-size:.75em;">右键查看框架代码</div>`
+                    },
                 ]
             }
         }
@@ -192,6 +198,10 @@ export default function calloutsPlugin() {
             data.hProperties = {
                 style: "position:relative;overflow:hidden;"
             }
+            let { html, classLanguage } = runHighlighterWithAstro(
+                'html',
+                str
+            );
             node.children = [
                 {
                     type: "html",
@@ -218,12 +228,6 @@ export default function calloutsPlugin() {
                                     <meta http-equiv="X-UA-Compatible" content="IE=edge">
                                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                     <title>__title</title>
-                                    <style>
-                                        *{
-                                            font-family: PingFang SC, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Lantinghei SC, Microsoft Yahei,
-                    Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
-                                        }
-                                    </style>
                                 </head>
                                 <body>
                                     __content
@@ -232,6 +236,50 @@ export default function calloutsPlugin() {
                             }
                         },
                         children: []
+                    },
+                    {
+                        type: 'containerDirective',
+                        __handled: true,
+                        data: {
+                          hName: 'div',
+                          hProperties: {
+                            style: `background: #e9e9e9;padding: 0 1em;font-size:.75em;`
+                          },
+                        },
+                        children: [
+                          {
+                            type: 'containerDirective',
+                            __handled: true,
+                            data: {
+                              hName: 'details',
+                              hProperties: {},
+                            },
+                            children: [
+                                {
+                                    type: "html",
+                                    __handled: true,
+                                    value: `<summary style="cursor: pointer;">查看源码</summary>`
+                                },
+                                {
+                                    type: 'containerDirective',
+                                    __handled: true,
+                                    data: {
+                                        hName: 'div',
+                                        hProperties: {
+                                            style: `padding: 0 1em;font-size:.75em;overflow: hidden;`
+                                        }
+                                    },
+                                    children: [
+                                        {
+                                            type: "html",
+                                            __handled: true,
+                                            value: `<pre class="${classLanguage}"><code is:raw class="${classLanguage}">${html}</code></pre>`
+                                        }
+                                    ]
+                                },
+                            ],
+                          },
+                        ],
                     },
                 ]
         }
