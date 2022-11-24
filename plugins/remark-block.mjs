@@ -154,16 +154,33 @@ export default function calloutsPlugin() {
             const attributes = node.attributes || {};
             if(attributes.path){
                 node.__handled = true
-                data.hName = 'iframe'
+                data.hName = "div"
                 data.hProperties = {
-                    id: attributes.id ?? '',
-                    class: attributes.class ?? '',
-                    style: 'width: 100%;border: 1px solid #e9e9e9;',
-                    height: '300px',
-                    frameborder: '0',
-                    allowfullscreen: "true",
-                    src: attributes.path
+                    style: "position:relative;overflow:hidden;"
                 }
+                node.children = [
+                    {
+                        type: "html",
+                        __handled: true,
+                        value: `<div style="background: #e9e9e9;padding: 0 1em;font-size:.75em;float:left;">${attributes.title || 'demo'}</div>`
+                    },
+                    {
+                        type: "leafDirective",
+                        __handled: true,
+                        data: {
+                            hName: 'iframe',
+                            hProperties: {
+                                id: attributes.id ?? '',
+                                class: attributes.class ?? 'demo',
+                                style: 'width: 100%;border: 1px solid #e9e9e9;display: block;box-sizing: border-box;',
+                                height: '300px',
+                                frameborder: '0',
+                                allowfullscreen: "true",
+                                src: attributes.path
+                            }
+                        }
+                    },
+                ]
             }
         }
         if (node.type === 'containerDirective' && node.name === 'demo') {
@@ -171,34 +188,52 @@ export default function calloutsPlugin() {
             const attributes = node.attributes || {};
             node.__handled = true
             const str = node.children.reduce((a, b)=>(a+'\n'+b.value), "")
-            data.hName = 'iframe'
-            node.children = []
+            data.hName = "div"
             data.hProperties = {
-                id: attributes.id ?? '',
-                class: attributes.class ?? '',
-                style: 'width: 100%;border: 1px solid #e9e9e9;',
-                height: '300px',
-                frameborder: '0',
-                allowfullscreen: "true",
-                srcdoc: `<!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>__title</title>
-                    <style>
-                        *{
-                            font-family: PingFang SC, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Lantinghei SC, Microsoft Yahei,
-    Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
-                        }
-                    </style>
-                </head>
-                <body>
-                    __content
-                </body>
-                </html>`.replace(/[\r\n]/g, '').replace('__title',attributes.title || '').replace('__content', str)
+                style: "position:relative;overflow:hidden;"
             }
+            node.children = [
+                {
+                    type: "html",
+                    __handled: true,
+                    value: `<div style="background: #e9e9e9;padding: 0 1em;font-size:.75em;float:left;">${attributes.title || 'demo'}</div>`,
+                    children: []
+                },
+                    {
+                        type: "leafDirective",
+                        __handled: true,
+                        data: {
+                            hName: 'iframe',
+                            hProperties: {
+                                id: attributes.id ?? '',
+                                class: attributes.class ?? 'demo',
+                                style: 'width: 100%;border: 1px solid #e9e9e9;display: block;box-sizing: border-box;',
+                                height: '300px',
+                                frameborder: '0',
+                                allowfullscreen: "true",
+                                srcdoc: `<!DOCTYPE html>
+                                <html lang="en">
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                    <title>__title</title>
+                                    <style>
+                                        *{
+                                            font-family: PingFang SC, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Lantinghei SC, Microsoft Yahei,
+                    Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+                                        }
+                                    </style>
+                                </head>
+                                <body>
+                                    __content
+                                </body>
+                                </html>`.replace(/[\r\n]/g, '').replace('__title',attributes.title || 'demo').replace('__content', str)
+                            }
+                        },
+                        children: []
+                    },
+                ]
         }
     })
     visit(tree, (node) => {
