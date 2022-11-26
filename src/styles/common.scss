@@ -138,6 +138,24 @@ html, body {
         text-indent: 0;
     }
   }
+  .article__content h1,
+  .article__content h2,
+  .article__content h3 {
+    display: inline;
+    width: auto;
+    background: linear-gradient(to bottom,transparent 70%,rgba(26, 188, 156,.3) 0) no-repeat;
+    &::before{
+        content: "";
+        margin-top: 1.2em;
+        display: block;
+    }
+    &::after{
+        content: "";
+        display: block;
+        margin-bottom: 0.6em;
+    }
+  }
+  
 }
 
 .hero-image{

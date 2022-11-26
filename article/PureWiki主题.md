@@ -1,7 +1,7 @@
 ---
 title: PureWiki主题
 description: 一个简单的主题
-heroImage: https://w.wallhaven.cc/full/y8/wallhaven-y8622k.jpg
+heroImage: https://tva1.sinaimg.cn/large/005QfeMjgy1h8fzntjxv3j32h41bz4qp.jpg
 heroPosition: top
 top: true
 pubDate: 2022/11/15 16:05:35
@@ -48,18 +48,44 @@ updatedDate: 2022/11/15 16:05:56
 6. 文章提供了直接在github编辑功能，自行配置即可
 7. 增加`mermaid`渲染流程图时序图（暂时提供两个）
 8. 增加`mathjax`渲染公式
-9. 提供`demo`命令和`democ`命令  
-    `demo`为收缩框默认打开  
-    `democ`为收缩框默认关闭
+9. 提供`iframe`命令和`iframec`命令  
+    `iframe`为收缩框默认打开  
+    `iframec`为收缩框默认关闭
     ```
-    ::demo[流程图Demo]{url=/demo/flowchart.html}
-    ::democ[流程图Demo]{url=/demo/flowchart.html}
+    ::iframe[流程图Demo]{url=/demo/flowchart.html}
+    ::iframec[流程图Demo]{url=/demo/flowchart.html}
     ```
     目前版本能够展示url的网页,效果如下：
-    ::demo[流程图Demo]{url=/demo/flowchart.html}
-    ::democ[时序图]{url=/demo/sequence-diagrams.html}
+    ::iframe[流程图Demo]{url=/demo/flowchart.html}
+    ::iframec[时序图]{url=/demo/sequence-diagrams.html}
 
-    ::demo[BiliBili]{url="//player.bilibili.com/player.html?aid=690345969&bvid=BV1N24y117QE&cid=895902728&page=1"}
+    ::iframe[BiliBili]{url="//player.bilibili.com/player.html?aid=690345969&bvid=BV1N24y117QE&cid=895902728&page=1"}
+
+10. 提供`demo`命令
+
+    ```
+    :::demo
+    <div>
+        <div>before content<div>
+        text
+        <div>after content<div>
+    </div>
+    :::
+    ```
+    效果：
+    :::demo
+    <div>
+        <div>before content<div>
+        text
+        <div>after content<div>
+    </div>
+    :::
+    
+    ```
+    ::demo{path="/demo/flowchart.html"}
+    ```
+    效果：
+    ::demo{path="/demo/flowchart.html"}
 
 
 ## 截图欣赏

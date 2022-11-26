@@ -5,6 +5,12 @@ const { MODE } = import.meta.env;
 export const isDev = MODE === 'development';
 export const isProd = MODE === 'production';
 
+if(isDev){
+    import.meta.glob("@root/aDemo/**/*.html", {
+        eager: true,
+    })
+}
+
 export const SITE_LANG = "zh-cn"
 export const SITE_TITLE = 'PureWiki';
 export const SITE_DESCRIPTION = '花径不曾缘客扫，蓬门今始为君开!';

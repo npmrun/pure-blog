@@ -1,6 +1,6 @@
 
 //===== 收缩框 ===== Start
-document.querySelector(`.layout .left .wrapper .tree`).style.opacity = 0
+// document.querySelector(`.layout .left .wrapper .tree`).style.opacity = 0
 let temp = localStorage.getItem("openFolder")
     let openFolder = []
     if(temp){
@@ -9,10 +9,10 @@ let temp = localStorage.getItem("openFolder")
             document.querySelector(`.layout .left .wrapper details[data-path="${v}"]`).setAttribute("open", "true")
         })
     }
-    setTimeout(() => {
-        document.querySelector(`.layout .left .wrapper .tree`).style.transition = "opacity .5s linear"
-        document.querySelector(`.layout .left .wrapper .tree`).style.opacity = 1
-    }, 20);
+    // setTimeout(() => {
+    //     document.querySelector(`.layout .left .wrapper .tree`).style.transition = "opacity .5s linear"
+    //     document.querySelector(`.layout .left .wrapper .tree`).style.opacity = 1
+    // }, 20);
     const folderArray = [...document.querySelectorAll(".layout .left .wrapper details[data-path]")]
     folderArray.forEach(el=>{
         el.addEventListener('toggle',(ev)=>{

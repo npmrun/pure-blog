@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-// import mdx from '@astrojs/mdx';
+import mdx from '@astrojs/mdx';
 import prefetch from '@astrojs/prefetch';
 import path from 'path';
 import remarkBlock from './plugins/remark-block.mjs';
@@ -19,7 +19,7 @@ export default defineConfig({
     syntaxHighlight: 'prism',
     extendDefaultPlugins: true,
     remarkPlugins: [Directive, [remarkBlock, {}], remarkMath, remarkFlow, remarkBreaks],
-    rehypePlugins: [rehypeMathjax]
+    rehypePlugins: [rehypeMathjax],
   },
   integrations: [
     prefetch({

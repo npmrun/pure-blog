@@ -11,11 +11,11 @@ export const get = () => {
     stylesheet: true,
     customData: `<language>${SITE_LANG || 'en-us'}</language>`,
     site: import.meta.env.SITE,
-    items: posts.slice(10).map((post) => ({
+    items: posts.slice(0, 10).map((post) => ({
       link: post.url,
       title: post.title,
       pubDate: post.pubDate,
-      desc: post.description,
+      description: post.description,
     })),
   });
 };

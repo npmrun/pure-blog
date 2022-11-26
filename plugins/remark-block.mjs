@@ -4,7 +4,11 @@
 import { visit } from 'unist-util-visit';
 import { h } from 'hastscript';
 import { toString } from 'hast-util-to-string';
+import { runHighlighterWithAstro } from "@astrojs/prism/dist/highlighter";
 import Slugger from 'github-slugger';
+// import path from 'path';
+// import fs from 'fs';
+// import { normalizePath } from 'vite';
 
 const slugs = new Slugger();
 
@@ -48,6 +52,7 @@ export default function calloutsPlugin() {
         title: toString(node) //slugs.slug(toString(node)),
       });
     });
+    // file.data.astro.frontmatter.setup = "import TT from '@blog/components/Text.astro'";
     file.data.astro.frontmatter._rawString = file.value;
     file.data.astro.frontmatter._images = images;
     file.data.astro.frontmatter._head = head;
@@ -125,7 +130,162 @@ export default function calloutsPlugin() {
       }
     });
     visit(tree, (node) => {
-        if (node.type === 'leafDirective' && (node.name === 'demo' || node.name === 'democ')) {
+        // if (node.type === 'leafDirective' && node.name === 'demo') {
+        //     const cwd = process.cwd()
+        //     const data = node.data || (node.data = {});
+        //     const attributes = node.attributes || {};
+        //     if(attributes.path){
+        //         const curPath = normalizePath(path.join(cwd, attributes.path))
+        //         const code = fs.readFileSync(curPath, { encoding: "utf8", flag: 'r'})
+        //         node.__handled = true
+        //         data.hName = 'iframe'
+        //         data.hProperties = {
+        //             id: attributes.id ?? '',
+        //             class: attributes.class ?? '',
+        //             style: 'width: 100%;border: 1px solid #e9e9e9;',
+        //             height: '300px',
+        //             frameborder: '0',
+        //             allowfullscreen: "true",
+        //             srcdoc: code
+        //         }
+        //     }
+        // }
+        if (node.type === 'leafDirective' && node.name === 'demo') {
+            const data = node.data || (node.data = {});
+            const attributes = node.attributes || {};
+            if(attributes.path){
+                node.__handled = true
+                data.hName = "div"
+                data.hProperties = {
+                    style: "position:relative;overflow:hidden;"
+                }
+                node.children = [
+                    {
+                        type: "html",
+                        __handled: true,
+                        value: `<div style="background: #e9e9e9;padding: 0 1em;font-size:.75em;float:left;">${attributes.title || 'demo'}</div>`
+                    },
+                    {
+                        type: "leafDirective",
+                        __handled: true,
+                        data: {
+                            hName: 'iframe',
+                            hProperties: {
+                                id: attributes.id ?? '',
+                                class: attributes.class ?? 'demo',
+                                style: 'width: 100%;border: 1px solid #e9e9e9;display: block;box-sizing: border-box;',
+                                height: '300px',
+                                frameborder: '0',
+                                allowfullscreen: "true",
+                                src: attributes.path
+                            }
+                        }
+                    },
+                    {
+                        type: "html",
+                        __handled: true,
+                        value: `<div style="background: #e9e9e9;padding: 0 1em;font-size:.75em;">右键查看框架代码</div>`
+                    },
+                ]
+            }
+        }
+        if (node.type === 'containerDirective' && node.name === 'demo') {
+            const data = node.data || (node.data = {});
+            const attributes = node.attributes || {};
+            node.__handled = true
+            const str = node.children.reduce((a, b)=>(a+'\n'+b.value), "")
+            data.hName = "div"
+            data.hProperties = {
+                style: "position:relative;overflow:hidden;"
+            }
+            let { html, classLanguage } = runHighlighterWithAstro(
+                'html',
+                str
+            );
+            node.children = [
+                {
+                    type: "html",
+                    __handled: true,
+                    value: `<div style="background: #e9e9e9;padding: 0 1em;font-size:.75em;float:left;">${attributes.title || 'demo'}</div>`,
+                    children: []
+                },
+                    {
+                        type: "leafDirective",
+                        __handled: true,
+                        data: {
+                            hName: 'iframe',
+                            hProperties: {
+                                id: attributes.id ?? '',
+                                class: attributes.class ?? 'demo',
+                                style: 'width: 100%;border: 1px solid #e9e9e9;display: block;box-sizing: border-box;',
+                                height: '300px',
+                                frameborder: '0',
+                                allowfullscreen: "true",
+                                srcdoc: `<!DOCTYPE html>
+                                <html lang="en">
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                    <title>__title</title>
+                                </head>
+                                <body>
+                                    __content
+                                </body>
+                                </html>`.replace(/[\r\n]/g, '').replace('__title',attributes.title || 'demo').replace('__content', str)
+                            }
+                        },
+                        children: []
+                    },
+                    {
+                        type: 'containerDirective',
+                        __handled: true,
+                        data: {
+                          hName: 'div',
+                          hProperties: {
+                            style: `background: #e9e9e9;padding: 0 1em;font-size:.75em;`
+                          },
+                        },
+                        children: [
+                          {
+                            type: 'containerDirective',
+                            __handled: true,
+                            data: {
+                              hName: 'details',
+                              hProperties: {},
+                            },
+                            children: [
+                                {
+                                    type: "html",
+                                    __handled: true,
+                                    value: `<summary style="cursor: pointer;">查看源码</summary>`
+                                },
+                                {
+                                    type: 'containerDirective',
+                                    __handled: true,
+                                    data: {
+                                        hName: 'div',
+                                        hProperties: {
+                                            style: `padding: 0 1em;font-size:.75em;overflow: hidden;`
+                                        }
+                                    },
+                                    children: [
+                                        {
+                                            type: "html",
+                                            __handled: true,
+                                            value: `<pre class="${classLanguage}"><code is:raw class="${classLanguage}">${html}</code></pre>`
+                                        }
+                                    ]
+                                },
+                            ],
+                          },
+                        ],
+                    },
+                ]
+        }
+    })
+    visit(tree, (node) => {
+        if (node.type === 'leafDirective' && (node.name === 'iframe' || node.name === 'iframec')) {
             const data = node.data || (node.data = {});
             const attributes = node.attributes || {};
             const children = node.children || [];
@@ -135,7 +295,7 @@ export default function calloutsPlugin() {
             node.__handled = true
             data.hName = 'details'
             data.hProperties = { style:'margin-bottom: 1.2em;' }
-            if(node.name === 'demo'){
+            if(node.name === 'iframe'){
                 data.hProperties.open = 'true'
             }
             node.children = [
